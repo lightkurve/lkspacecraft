@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "lkspice"
+version = "0.1.0"
+description = ""
+authors = ["Christina Hedges <christina.l.hedges@nasa.gov>", "Tyler Pritchard <tyler.a.pritchard@nasa.gov>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+spiceypy = "^6.0.0"
+
+
+[tool.poetry.group.dev.dependencies]
+jupyterlab = "^4.2.5"
+pytest = "^8.3.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
