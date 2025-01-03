@@ -2,6 +2,7 @@ from glob import glob
 import numpy as np
 from . import PACKAGEDIR, KERNELDIR
 
+
 def truncate_directory_string(directory_string):
     """Turns a directory string into a SPICE compliant list of directorys..."""
     lines = []
@@ -22,12 +23,12 @@ def truncate_directory_string(directory_string):
 def create_meta_kernel():
     """Function that makes a meta kernel text file in a directory with a reasonable order.
 
-    We assume that everything in KERNELDIR/generic is required, and has higher priority than the mission kernels. 
+    We assume that everything in KERNELDIR/generic is required, and has higher priority than the mission kernels.
     """
 
     META_START = """KPL/MK
 
-K2 meta kernel
+lkspice meta kernel
 ==============
 
     The generic kernels listed below can be obtained from NAIF generic kernels:
@@ -53,20 +54,20 @@ K2 meta kernel
     for dirname in glob(f"{KERNELDIR}*"):
         for d in truncate_directory_string(dirname):
             path_values.append(d)
-        path_symbols.append(dirname.split('/')[-1])
+        path_symbols.append(dirname.split("/")[-1])
         for d in np.sort(glob(dirname + "/*")):
-            kernels_to_load.append('$' + dirname.split('/')[-1] + d[len(dirname):])
+            kernels_to_load.append("$" + dirname.split("/")[-1] + d[len(dirname) :])
 
     def format_list(l, pad=10):
         if len(l) == 0:
             return ""
         if len(l) == 1:
             return f" '{l[0]}'"
-        output = f" '{l[0]}'" 
+        output = f" '{l[0]}'"
         for i in l[1:]:
             output += "\n" + "".join([" "] * pad) + "'" + i + "'"
         return output
-        
+
     output = f"""{META_START}
     \n    PATH_VALUES = ({format_list(path_values, 20)}              )
     \n    PATH_SYMBOLS = ({format_list(path_symbols, 21)}              )
@@ -76,4 +77,3 @@ K2 meta kernel
     with open(f"{PACKAGEDIR}/data/Meta.txt", "w") as file:
         file.write(output)
     return
-
