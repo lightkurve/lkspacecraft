@@ -18,7 +18,7 @@ Requirements
 ------------
 
 This package relies heavily on
-```spiceypy`` <https://github.com/AndrewAnnex/SpiceyPy>`__ which wraps
+`spiceypy <https://github.com/AndrewAnnex/SpiceyPy>`__ which wraps
 `SPICE <https://naif.jpl.nasa.gov/naif/toolkit.html>`__. It also relies
 on `astropy <https://www.astropy.org/>`__.
 
@@ -131,10 +131,11 @@ store them within the packages ``src/lkorbit/data/kernels`` directory.
 It will then munge them into a meta kernel on import.
 
 The generic kernels can be obtained from NAIF generic kernels:
-https://naif.jpl.nasa.gov/pub/naif/generic_kernels/ The Kepler kernels
-can be obtained from MAST:
-https://archive.stsci.edu/missions/kepler/spice/ The K2 kernels can be
-obtained from MAST: https://archive.stsci.edu/missions/k2/spice/ The
+https://naif.jpl.nasa.gov/pub/naif/generic_kernels/
+The Kepler kernels can be obtained from MAST:
+https://archive.stsci.edu/missions/kepler/spice/ 
+The K2 kernels can be obtained from MAST: 
+https://archive.stsci.edu/missions/k2/spice/ The
 TESS kernels can be obtained from MAST:
 https://archive.stsci.edu/missions/tess/engineering/
 https://archive.stsci.edu/missions/tess/models/
