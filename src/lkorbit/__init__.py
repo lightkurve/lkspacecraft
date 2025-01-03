@@ -1,9 +1,25 @@
-__version__ = "0.1.0"
+# Standard library
+import os  # noqa
+
+PACKAGEDIR = os.path.abspath(os.path.dirname(__file__))
+
+from importlib.metadata import version, PackageNotFoundError  # noqa
+
+
+def get_version():
+    try:
+        return version("lkorbit")
+    except PackageNotFoundError:
+        return "unknown"
+
+
+__version__ = get_version()
+
 import logging  # noqa: E402
 import os  # noqa
 from glob import glob  # noqa
 
-log = logging.getLogger("lkspice")
+log = logging.getLogger("lkorbit")
 
 PACKAGEDIR = os.path.abspath(os.path.dirname(__file__))
 KERNELDIR = f"{PACKAGEDIR}/data/kernels/"

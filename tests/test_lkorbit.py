@@ -1,17 +1,20 @@
 import os
+
+import astropy.units as u
 import numpy as np
-import lkspice
 from astropy.time import Time
+
+import lkorbit
 
 
 def test_init():
-    os.path.isfile(lkspice.PACKAGEDIR + "/data/Meta.txt")
-    lkspice.KeplerSpacecraft()
-    lkspice.TESSSpacecraft()
+    os.path.isfile(lkorbit.PACKAGEDIR + "/data/Meta.txt")
+    lkorbit.KeplerSpacecraft()
+    lkorbit.TESSSpacecraft()
 
 
 def test_kepler():
-    ks = lkspice.KeplerSpacecraft()
+    ks = lkorbit.KeplerSpacecraft()
     assert ks.start_time > Time("2009-03-06 06:22:56.000025")
     assert ks.end_time < Time("2019-12-30 23:58:50.815000")
     t = Time("2009-04-06 06:22:56.000025")

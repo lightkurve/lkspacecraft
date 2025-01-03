@@ -1,9 +1,9 @@
 [tool.poetry]
-name = "lkspice"
-version = "0.1.0"
+name = "lkorbit"
+version = "1.0.0"
 description = ""
 authors = ["Christina Hedges <christina.l.hedges@nasa.gov>", "Tyler Pritchard <tyler.a.pritchard@nasa.gov>"]
-readme = "README.md"
+readme = "README.rst"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<4.0"
@@ -21,6 +21,14 @@ lksearch = "^1.0.0"
 line-profiler = "^4.2.0"
 tesswcs = "^1.2.2"
 tesscube = "^1.0.5"
+black = "^24.10.0"
+isort = "^5.13.2"
+nbsphinx = "^0.9.6"
+sphinx-rtd-theme = "^3.0.2"
+sphinx-astropy = "^1.9.1"
+sphinx-automodapi = "^0.18.0"
+pydata-sphinx-theme = "^0.16.1"
+sphinx-autobuild = "^2024.10.3"
 
 [build-system]
 requires = ["poetry-core"]

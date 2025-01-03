@@ -1,6 +1,9 @@
+# flake8: noqa
 from glob import glob
+
 import numpy as np
-from . import PACKAGEDIR, KERNELDIR
+
+from . import KERNELDIR, PACKAGEDIR
 
 
 def truncate_directory_string(directory_string):
@@ -28,7 +31,7 @@ def create_meta_kernel():
 
     META_START = """KPL/MK
 
-lkspice meta kernel
+lkorbit meta kernel
 ==============
 
     The generic kernels listed below can be obtained from NAIF generic kernels:

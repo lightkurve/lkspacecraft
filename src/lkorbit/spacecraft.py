@@ -1,13 +1,15 @@
 """Classes for working with the orbits of spacecraft"""
 
-from . import PACKAGEDIR
-import spiceypy
-from astropy.time import Time
+from typing import Union
+
+import astropy.units as u
 import numpy as np
 import numpy.typing as npt
-from typing import Union
+import spiceypy
 from astropy.constants import c
-import astropy.units as u
+from astropy.time import Time
+
+from . import PACKAGEDIR
 
 
 class BadEphemeris(Exception):
@@ -92,7 +94,7 @@ class Spacecraft(object):
                     # Update the global start and end times
                     start_et = min(start_et, interval_start)
                     end_et = max(end_et, interval_end)
-                except Exception as e:
+                except Exception:
                     continue
         start_time = Time(spiceypy.et2datetime(start_et))
         end_time = Time(spiceypy.et2datetime(end_et))
@@ -104,18 +106,26 @@ class Spacecraft(object):
     def _process_time(self, time: Time):
         # convert to astropy.time.Time if needed
         if not isinstance(time, Time):
-            time = Time(time)
+            try:
+                time = Time(time, format="jd")
+            except ValueError:
+                try:
+                    time = Time(time)
+                except Exception:
+                    raise ValueError(
+                        "Can not parse input time. Pass an `astropy.time.Time` object."
+                    )
         if time.ndim == 0:
             time = Time([time])
-        et = spiceypy.str2et(time.isot)
-        return et
+        return time
 
     def _get_state_vector(self, time: Time, observer="SOLAR SYSTEM BARYCENTER"):
         time = self._process_time(time)
+        et = spiceypy.str2et(time.isot)
         try:
             state, light_travel_time = spiceypy.spkezr(
                 f"{self.spacecraft_code}",
-                time,
+                et,
                 "J2000",
                 "NONE",
                 observer,
@@ -173,7 +183,8 @@ class Spacecraft(object):
     ) -> npt.NDArray:
         """Returns the barycentric time correction in days for observations of a particular target specified by RA and Dec.
 
-        Note that `time` here must be time in spacecraft time, in UTC format. This means that for SPOC data this should be the time without the SPOC barycentric correction applied.
+        Note that `time` here must be time in spacecraft time, in UTC format.
+        This means that for SPOC data this should be the time without the SPOC barycentric correction applied.
 
         Parameters:
         -----------
@@ -289,7 +300,8 @@ class KeplerSpacecraft(Spacecraft):
     ) -> npt.NDArray:
         """Returns the barycentric time correction in days for observations of a particular target specified by RA and Dec.
 
-        Note that `time` here must be time in spacecraft time, in UTC format. This means that for SPOC data this should be the time without the SPOC barycentric correction applied.
+        Note that `time` here must be time in spacecraft time, in UTC format.
+        This means that for SPOC data this should be the time without the SPOC barycentric correction applied.
 
         Note this also corrects the timing error in the Kepler TIME column, see https://archive.stsci.edu/kepler/timing_error.html
 
@@ -302,6 +314,7 @@ class KeplerSpacecraft(Spacecraft):
         dec: float, np.ndarray
             The declination of the target in degrees
         """
+        time = self._process_time(time)
         tcorr = super().get_barycentric_time_correction(time, ra, dec)
         tcorr += 66.184
         k = time.jd > Time("2012-06-30 23:59:60", format="iso").jd
