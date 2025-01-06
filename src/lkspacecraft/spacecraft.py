@@ -8,8 +8,7 @@ import numpy.typing as npt
 import spiceypy
 from astropy.constants import c
 from astropy.time import Time
-
-from . import PACKAGEDIR
+from astropy.utils.data import cache_contents
 
 
 class BadEphemeris(Exception):
@@ -58,8 +57,11 @@ class Spacecraft(object):
         Exception
             If there is an issue loading the SPICE kernels or retrieving the kernel time coverage.
         """
+        meta_kernel = cache_contents(pkgname="lkspacecraft")[
+            "https://github.com/lightkurve/lkspacecraft/src/lkspacecraft/data/Meta.txt"
+        ]
         spiceypy.kclear()
-        spiceypy.furnsh(PACKAGEDIR + "/data/Meta.txt")
+        spiceypy.furnsh(meta_kernel)
         self.start_time, self.end_time = self._get_kernel_start_and_end_times()
 
     def _get_kernel_start_and_end_times(self):
