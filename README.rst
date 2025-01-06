@@ -28,9 +28,9 @@ Kepler and TESS spacecrafts. This will enable you to access
 
 
 
- .. image:: https://raw.githubusercontent.com/lightkurve/lkspacecraft/main/docs/images/tess_wrt_earth.png
-    :width: 400px
-    :alt: TESS position with respect to the earth.
+.. image:: https://raw.githubusercontent.com/lightkurve/lkspacecraft/main/docs/images/tess_wrt_earth.png
+   :width: 400px
+   :alt: TESS position with respect to the earth.
    :align: center
 
 Requirements
