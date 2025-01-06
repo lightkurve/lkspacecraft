@@ -26,10 +26,6 @@ Kepler and TESS spacecrafts. This will enable you to access
 3. The baycentric time correction for any target RA/Dec at any time
 4. The velocity aberration for any target RA/Dec at any time
 
-.. image:: https://raw.githubusercontent.com/<username>/<repository>/<branch>/docs/images/example.png
-   :alt: Example image
-   :width: 300px
-
 
 +-----------------+-----------------+
 | .. image:: https://raw.githubusercontent.com/lightkurve/lkspacecraft/main/docs/images/tess_wrt_earth.png     | .. image:: https://raw.githubusercontent.com/lightkurve/lkspacecraft/main/docs/images/tess_wrt_moon.png     |
