@@ -1,6 +1,18 @@
+.. image:: https://github.com/lightkurve/lkspacecraft/actions/workflows/pytest.yml/badge.svg
+    :target: https://github.com/lightkurve/lkspacecraft/actions/workflows/pytest.yml
+    :alt: Test status
+
+.. image:: https://badge.fury.io/py/lkspacecraft.svg
+    :target: https://badge.fury.io/py/lkspacecraft
+    :alt: PyPI version
+
+.. image:: https://img.shields.io/badge/documentation-live-blue.svg
+    :target: https://lightkurve.github.io/lkspacecraft/
+    :alt: Documentation
+
+
 lkspacecraft
 ============
-
 
 .. <!-- intro content start -->
 
@@ -13,6 +25,17 @@ Kepler and TESS spacecrafts. This will enable you to access
    system barycenter, the earth, or the moon
 3. The baycentric time correction for any target RA/Dec at any time
 4. The velocity aberration for any target RA/Dec at any time
+
+.. image:: https://raw.githubusercontent.com/<username>/<repository>/<branch>/docs/images/example.png
+   :alt: Example image
+   :width: 300px
+
+
++-----------------+-----------------+
+| .. image:: https://raw.githubusercontent.com/lightkurve/lkspacecraft/main/docs/images/tess_wrt_earth.png     | .. image:: https://raw.githubusercontent.com/lightkurve/lkspacecraft/main/docs/images/tess_wrt_moon.png     |
+|    :width: 200px                 |    :width: 200px                 |
+|    :alt: TESS position with respect to the earth.                 |    :alt: TESS position with respect to the moon.                 |
++-----------------+-----------------+
 
 Requirements
 ------------
