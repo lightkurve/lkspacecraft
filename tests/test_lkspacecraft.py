@@ -4,17 +4,17 @@ import astropy.units as u
 import numpy as np
 from astropy.time import Time
 
-import lkorbit
+import lkspacecraft
 
 
 def test_init():
-    os.path.isfile(lkorbit.PACKAGEDIR + "/data/Meta.txt")
-    lkorbit.KeplerSpacecraft()
-    lkorbit.TESSSpacecraft()
+    os.path.isfile(lkspacecraft.PACKAGEDIR + "/data/Meta.txt")
+    lkspacecraft.KeplerSpacecraft()
+    lkspacecraft.TESSSpacecraft()
 
 
 def test_kepler():
-    ks = lkorbit.KeplerSpacecraft()
+    ks = lkspacecraft.KeplerSpacecraft()
     assert ks.start_time > Time("2009-03-06 06:22:56.000025")
     assert ks.end_time < Time("2019-12-30 23:58:50.815000")
     t = Time("2009-04-06 06:22:56.000025")

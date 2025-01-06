@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "lkorbit"
+name = "lkspacecraft"
 version = "1.0.0"
 description = ""
 authors = ["Christina Hedges <christina.l.hedges@nasa.gov>", "Tyler Pritchard <tyler.a.pritchard@nasa.gov>"]
@@ -29,6 +29,7 @@ sphinx-astropy = "^1.9.1"
 sphinx-automodapi = "^0.18.0"
 pydata-sphinx-theme = "^0.16.1"
 sphinx-autobuild = "^2024.10.3"
+ghp-import = "^2.1.0"
 
 [build-system]
 requires = ["poetry-core"]

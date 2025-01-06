@@ -3,12 +3,12 @@ import os  # noqa
 
 PACKAGEDIR = os.path.abspath(os.path.dirname(__file__))
 
-from importlib.metadata import version, PackageNotFoundError  # noqa
+from importlib.metadata import PackageNotFoundError, version  # noqa
 
 
 def get_version():
     try:
-        return version("lkorbit")
+        return version("lkspacecraft")
     except PackageNotFoundError:
         return "unknown"
 
@@ -19,7 +19,7 @@ import logging  # noqa: E402
 import os  # noqa
 from glob import glob  # noqa
 
-log = logging.getLogger("lkorbit")
+log = logging.getLogger("lkspacecraft")
 
 PACKAGEDIR = os.path.abspath(os.path.dirname(__file__))
 KERNELDIR = f"{PACKAGEDIR}/data/kernels/"

@@ -1,10 +1,10 @@
 API
 ===
-.. automodule:: lkorbit
+.. automodule:: lkspacecraft
    :members:
 
-.. autoclass:: lkorbit.KeplerSpacecraft
+.. autoclass:: lkspacecraft.KeplerSpacecraft
    :members:
 
-.. autoclass:: lkorbit.TESSSpacecraft
+.. autoclass:: lkspacecraft.TESSSpacecraft
    :members:

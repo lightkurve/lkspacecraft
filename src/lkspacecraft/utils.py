@@ -31,7 +31,7 @@ def create_meta_kernel():
 
     META_START = """KPL/MK
 
-lkorbit meta kernel
+lkspacecraft meta kernel
 ==============
 
     The generic kernels listed below can be obtained from NAIF generic kernels:

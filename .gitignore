@@ -1,6 +1,6 @@
 sandbox/
 scratch/
-src/lkorbit/data
+src/lkspacecraft/data
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

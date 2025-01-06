@@ -22,12 +22,12 @@ for x in os.walk("../../src"):
 print(sys.path)
 sys.path.insert(0, os.path.abspath(".."))
 sys.path.insert(0, os.path.abspath("../src/"))
-sys.path.insert(0, os.path.abspath("../src/lkorbit"))
+sys.path.insert(0, os.path.abspath("../src/lkspacecraft"))
 sys.path.insert(0, os.path.abspath("../.."))
 sys.path.insert(0, os.path.abspath("../../src/"))
-sys.path.insert(0, os.path.abspath("../../src/lkorbit"))
+sys.path.insert(0, os.path.abspath("../../src/lkspacecraft"))
 
-project = "lkorbit"
+project = "lkspacecraft"
 copyright = "2024, TESS Science Support Center"
 author = "TESS Science Support Center"
 release = "1.0.0"
@@ -63,10 +63,10 @@ html_sidebars = {
 
 html_theme_options = {
     "external_links": [],
-    "github_url": "https://github.com/lightkurve/lkorbit",
+    "github_url": "https://github.com/lightkurve/lkspacecraft",
 }
 
-html_title = "lkorbit"
+html_title = "lkspacecraft"
 
 
 # -- MyST-parser configuration--------------------------------------------------

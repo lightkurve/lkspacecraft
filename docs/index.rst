@@ -1,5 +1,5 @@
 #######
-lkorbit
+lkspacecraft
 #######
 
 .. include:: ../README.rst

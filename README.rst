@@ -1,5 +1,5 @@
-lkorbit
-=======
+lkspacecraft
+============
 
 
 .. <!-- intro content start -->
@@ -29,24 +29,24 @@ You can install this package with ``pip`` using
 
 ::
 
-   pip install lkorbit --upgrade
+   pip install lkspacecraft --upgrade
 
 You can also install this package by cloning the repo and then
 installing via poetry
 
 ::
 
-   git clone https://github.com/lightkurve/lkorbit.git
-   cd lkorbit
+   git clone https://github.com/lightkurve/lkspacecraft.git
+   cd lkspacecraft
    pip install --upgrade poetry
    poetry install .
 
 Usage
 -----
 
-``lkorbit`` provides ``Spacecraft`` object which will enable you to
+``lkspacecraft`` provides ``Spacecraft`` object which will enable you to
 access the orbital parameters of either the Kepler or TESS spacecraft.
-``lkorbit`` will obtain the relevant SPICE kernels to calculate the
+``lkspacecraft`` will obtain the relevant SPICE kernels to calculate the
 spacecraft position and velocity. To get the orbital elements you will
 need to pick a time that is within the relevant window of those SPICE
 kernels (i.e. when the mission was operational).
@@ -55,19 +55,19 @@ You can find the start and end times of the kernels using the following
 
 .. code:: python
 
-   from lkorbit import KeplerSpacecraft
+   from lkspacecraft import KeplerSpacecraft
 
    ks = KeplerSpacecraft()
    ks.start_time, ks.end_time
 
-All times in ``lkorbit`` use ``astropy.time.Time`` objects. Using the
+All times in ``lkspacecraft`` use ``astropy.time.Time`` objects. Using the
 ``get_spacecraft_position`` or ``get_spacecraft_velocity`` functions
 will provide you with the position or velocity in cartesian coordinates,
 for example
 
 .. code:: python
 
-   from lkorbit import KeplerSpacecraft
+   from lkspacecraft import KeplerSpacecraft
    from astropy.time import Time
 
    ks = KeplerSpacecraft()
@@ -85,7 +85,7 @@ by default, but you can specify the earth or moon using
 
 .. code:: python
 
-   from lkorbit import KeplerSpacecraft
+   from lkspacecraft import KeplerSpacecraft
    from astropy.time import Time
 
    ks = KeplerSpacecraft()
@@ -93,13 +93,13 @@ by default, but you can specify the earth or moon using
    ks.get_spacecraft_velocity(time=t, observer="earth")
 
 You are able to calculate the light arrival time of observations of a
-source at a given RA/Dec using ``lkorbit``\ ’s
+source at a given RA/Dec using ``lkspacecraft``\ ’s
 ``get_barycentric_time_correction`` function. This will give you the
 time delay in seconds from spacecraft time to time at the barycenter.
 
 .. code:: python
 
-   from lkorbit import KeplerSpacecraft
+   from lkspacecraft import KeplerSpacecraft
    from astropy.time import Time
 
    ks = KeplerSpacecraft()
@@ -110,7 +110,7 @@ Finally you can calculate velocity aberration using
 
 .. code:: python
 
-   from lkorbit import KeplerSpacecraft
+   from lkspacecraft import KeplerSpacecraft
    from astropy.time import Time
 
    ks = KeplerSpacecraft()
@@ -120,14 +120,14 @@ Finally you can calculate velocity aberration using
 Units
 ~~~~~
 
-In ``lkorbit``, just as in ``SPICE``, units are ``km`` and ``s``, unless
+In ``lkspacecraft``, just as in ``SPICE``, units are ``km`` and ``s``, unless
 otherwise specified.
 
 Kernels
 -------
 
-``lkorbit`` will obtain the SPICE kernels for Kepler and TESS for you
-store them within the packages ``src/lkorbit/data/kernels`` directory.
+``lkspacecraft`` will obtain the SPICE kernels for Kepler and TESS for you
+store them within the packages ``src/lkspacecraft/data/kernels`` directory.
 It will then munge them into a meta kernel on import.
 
 The generic kernels can be obtained from NAIF generic kernels:
@@ -140,10 +140,10 @@ TESS kernels can be obtained from MAST:
 https://archive.stsci.edu/missions/tess/engineering/
 https://archive.stsci.edu/missions/tess/models/
 
-Extending ``lkorbit``
+Extending ``lkspacecraft``
 ~~~~~~~~~~~~~~~~~~~~~
 
-If you wanted to extend ``lkorbit`` to include more spacecraft you would
+If you wanted to extend ``lkspacecraft`` to include more spacecraft you would
 need to include more kernels in the kernel directory and ensure they are
 added to the meta kernel. You can then create a new class in the
 ``spacecraft.py`` module with the correct NAIF code.
@@ -184,26 +184,26 @@ important you use the spacecraft time in all functions.
 .. <!-- quickstart content start -->
 
 
-The easiest way to install ``lkorbit`` and all of its dependencies is to use the ``pip`` command,
+The easiest way to install ``lkspacecraft`` and all of its dependencies is to use the ``pip`` command,
 which is a standard part of all Python distributions. (upon release)
 
-To install ``lkorbit``, run the following command in a terminal window:
+To install ``lkspacecraft``, run the following command in a terminal window:
 
 .. code-block:: console
 
-  $ python -m pip install lkorbit --upgrade
+  $ python -m pip install lkspacecraft --upgrade
 
 The ``--upgrade`` flag is optional, but recommended if you already
-have ``lkorbit`` installed and want to upgrade to the latest version.
+have ``lkspacecraft`` installed and want to upgrade to the latest version.
 
 Usage
 -----
 
-You can use `lkorbit` to access position and velocity information of Kepler and TESS using input times
+You can use `lkspacecraft` to access position and velocity information of Kepler and TESS using input times
 
 .. code-block:: python
 
-  from lkorbit import KeplerSpacecraft
+  from lkspacecraft import KeplerSpacecraft
   ks = KeplerSpacecraft()
   t = Time("2009-04-06 06:22:56.000025")
   ks.get_velocity_aberrated_positions(time=t, ra=290.666, dec=44.5)
@@ -215,8 +215,8 @@ You can use `lkorbit` to access position and velocity information of Kepler and 
 Contributing
 ============
 
-``lkorbit``  is an open-source, community driven package. 
-We welcome users to contribute and develop new features for ``lkorbit``.  
+``lkspacecraft``  is an open-source, community driven package. 
+We welcome users to contribute and develop new features for ``lkspacecraft``.  
 
 For further information, please see the `Lightkurve Community guidelines <https://docs.lightkurve.org/development/contributing.html>`_.
 
@@ -227,7 +227,7 @@ For further information, please see the `Lightkurve Community guidelines <https:
 Citing
 ======
 
-If you find ``lkorbit`` useful in your research, please cite it and give us a GitHub star!
+If you find ``lkspacecraft`` useful in your research, please cite it and give us a GitHub star!
 
 If you use Lightkurve for work or research presented in a publication, we request the following acknowledgment or citation:
 
@@ -242,7 +242,7 @@ See full citation instuctions, including dependencies, in the `Lightkurve docume
 Contact
 =======
 
-``lkorbit`` is an open source community project created by the `TESS Science Support Center`_.  The best way to contact us is to `open an issue`_ or to e-mail tesshelp@bigbang.gsfc.nasa.gov.
+``lkspacecraft`` is an open source community project created by the `TESS Science Support Center`_.  The best way to contact us is to `open an issue`_ or to e-mail tesshelp@bigbang.gsfc.nasa.gov.
  
   .. _`TESS Science Support Center`: https://heasarc.gsfc.nasa.gov/docs/tess/
   
