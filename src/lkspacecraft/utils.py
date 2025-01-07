@@ -69,10 +69,10 @@ def get_file_paths():
                 total=len(file_names),
                 desc="Downloading SPICE Kernels",
             )
-            file_paths.append(get_file_path(url + file_name))
-            progress_bar.n = idx
-            progress_bar.refresh()
-            log.debug(f"Downloaded {file_name}.")
+        file_paths.append(get_file_path(url + file_name))
+        progress_bar.n = idx
+        progress_bar.refresh()
+        log.debug(f"Downloaded {file_name}.")
     return file_paths
 
 

@@ -60,6 +60,7 @@ installing via poetry
    pip install --upgrade poetry
    poetry install .
 
+
 Usage
 -----
 
@@ -158,6 +159,21 @@ https://archive.stsci.edu/missions/k2/spice/ The
 TESS kernels can be obtained from MAST:
 https://archive.stsci.edu/missions/tess/engineering/
 https://archive.stsci.edu/missions/tess/models/
+
+When you first load `lkspacecraft` into Python all the kernels will be downloaded for you. This will take approximately 5 minutes, depending on your internet connection. Once this has been done, the kernels will be cached. If there are new TESS kernels available `lkspacecraft` will retrieve them for you and update the cache. 
+
+The total file volume for the kernels is ~1GB. These cached files are stored using `astropy`'s cache. If you want to clear the cache you can do either of the following;
+
+```python
+from lkspacecraft.utils import clear_download_cache
+clear_download_cache()
+```
+
+```python
+from astropy.utils.data import clear_download_cache
+clear_download_cache(pkgname='lkspacecraft')
+```
+
 
 Extending ``lkspacecraft``
 ~~~~~~~~~~~~~~~~~~~~~
