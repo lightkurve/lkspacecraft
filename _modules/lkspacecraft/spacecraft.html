@@ -48,7 +48,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
-    <meta name="docbuild:last-update" content="06 Jan 2025"/>
+    <meta name="docbuild:last-update" content="07 Jan 2025"/>
   </head>
   
   
@@ -126,7 +126,7 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../Quickstart.html">
-    Usage
+    <no title>
   </a>
 </li>
 
@@ -264,7 +264,7 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="../../Quickstart.html">
-    Usage
+    <no title>
   </a>
 </li>
 
@@ -407,8 +407,7 @@
 <span class="kn">import</span> <span class="nn">spiceypy</span>
 <span class="kn">from</span> <span class="nn">astropy.constants</span> <span class="kn">import</span> <span class="n">c</span>
 <span class="kn">from</span> <span class="nn">astropy.time</span> <span class="kn">import</span> <span class="n">Time</span>
-
-<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">PACKAGEDIR</span>
+<span class="kn">from</span> <span class="nn">astropy.utils.data</span> <span class="kn">import</span> <span class="n">cache_contents</span>
 
 
 <span class="k">class</span> <span class="nc">BadEphemeris</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
@@ -457,8 +456,11 @@
 <span class="sd">        Exception</span>
 <span class="sd">            If there is an issue loading the SPICE kernels or retrieving the kernel time coverage.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">meta_kernel</span> <span class="o">=</span> <span class="n">cache_contents</span><span class="p">(</span><span class="n">pkgname</span><span class="o">=</span><span class="s2">&quot;lkspacecraft&quot;</span><span class="p">)[</span>
+            <span class="s2">&quot;https://github.com/lightkurve/lkspacecraft/src/lkspacecraft/data/Meta.txt&quot;</span>
+        <span class="p">]</span>
         <span class="n">spiceypy</span><span class="o">.</span><span class="n">kclear</span><span class="p">()</span>
-        <span class="n">spiceypy</span><span class="o">.</span><span class="n">furnsh</span><span class="p">(</span><span class="n">PACKAGEDIR</span> <span class="o">+</span> <span class="s2">&quot;/data/Meta.txt&quot;</span><span class="p">)</span>
+        <span class="n">spiceypy</span><span class="o">.</span><span class="n">furnsh</span><span class="p">(</span><span class="n">meta_kernel</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_kernel_start_and_end_times</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_get_kernel_start_and_end_times</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

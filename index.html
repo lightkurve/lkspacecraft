@@ -48,11 +48,11 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Usage" href="Quickstart.html" />
+    <link rel="next" title="&lt;no title&gt;" href="Quickstart.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
-    <meta name="docbuild:last-update" content="06 Jan 2025"/>
+    <meta name="docbuild:last-update" content="07 Jan 2025"/>
   </head>
   
   
@@ -130,7 +130,7 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="Quickstart.html">
-    Usage
+    <no title>
   </a>
 </li>
 
@@ -272,7 +272,7 @@
     
 <li class="nav-item ">
   <a class="nav-link nav-internal" href="Quickstart.html">
-    Usage
+    <no title>
   </a>
 </li>
 
@@ -389,6 +389,8 @@ system barycenter, the earth, or the moon</p></li>
 <li><p>The baycentric time correction for any target RA/Dec at any time</p></li>
 <li><p>The velocity aberration for any target RA/Dec at any time</p></li>
 </ol>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/lightkurve/lkspacecraft/main/docs/images/tess_wrt_earth.png"><img alt="TESS position with respect to the earth." src="https://raw.githubusercontent.com/lightkurve/lkspacecraft/main/docs/images/tess_wrt_earth.png" style="width: 400px;" />
+</a>
 <section id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading">#</a></h2>
 <p>This package relies heavily on
@@ -399,15 +401,15 @@ on <a class="reference external" href="https://www.astropy.org/">astropy</a>.</p
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
 <p>You can install this package with <code class="docutils literal notranslate"><span class="pre">pip</span></code> using</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">lkspacecraft</span> <span class="o">--</span><span class="n">upgrade</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install lkspacecraft --upgrade</span>
 </pre></div>
 </div>
 <p>You can also install this package by cloning the repo and then
 installing via poetry</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">lightkurve</span><span class="o">/</span><span class="n">lkspacecraft</span><span class="o">.</span><span class="n">git</span>
-<span class="n">cd</span> <span class="n">lkspacecraft</span>
-<span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">poetry</span>
-<span class="n">poetry</span> <span class="n">install</span> <span class="o">.</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone https://github.com/lightkurve/lkspacecraft.git</span>
+<span class="go">cd lkspacecraft</span>
+<span class="go">pip install --upgrade poetry</span>
+<span class="go">poetry install .</span>
 </pre></div>
 </div>
 </section>
@@ -482,8 +484,7 @@ otherwise specified.</p>
 <section id="kernels">
 <h2>Kernels<a class="headerlink" href="#kernels" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">lkspacecraft</span></code> will obtain the SPICE kernels for Kepler and TESS for you
-store them within the packages <code class="docutils literal notranslate"><span class="pre">src/lkspacecraft/data/kernels</span></code> directory.
-It will then munge them into a meta kernel on import.</p>
+store them. Kernels can be found here:</p>
 <p>The generic kernels can be obtained from NAIF generic kernels:
 <a class="reference external" href="https://naif.jpl.nasa.gov/pub/naif/generic_kernels/">https://naif.jpl.nasa.gov/pub/naif/generic_kernels/</a>
 The Kepler kernels can be obtained from MAST:
@@ -493,6 +494,16 @@ The K2 kernels can be obtained from MAST:
 TESS kernels can be obtained from MAST:
 <a class="reference external" href="https://archive.stsci.edu/missions/tess/engineering/">https://archive.stsci.edu/missions/tess/engineering/</a>
 <a class="reference external" href="https://archive.stsci.edu/missions/tess/models/">https://archive.stsci.edu/missions/tess/models/</a></p>
+<p>When you first load <a class="reference internal" href="apidoc.html#module-lkspacecraft" title="lkspacecraft"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lkspacecraft</span></code></a> into Python all the kernels will be downloaded for you. This will take approximately 5 minutes, depending on your internet connection. Once this has been done, the kernels will be cached. If there are new TESS kernels available <a class="reference internal" href="apidoc.html#module-lkspacecraft" title="lkspacecraft"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lkspacecraft</span></code></a> will retrieve them for you and update the cache.</p>
+<p>The total file volume for the kernels is ~1GB. These cached files are stored using <code class="xref py py-obj docutils literal notranslate"><span class="pre">astropy</span></code>’s cache. If you want to clear the cache you can do either of the following;</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lkspacecraft.utils</span> <span class="kn">import</span> <span class="n">clear_download_cache</span>
+<span class="n">clear_download_cache</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy.utils.data</span> <span class="kn">import</span> <span class="n">clear_download_cache</span>
+<span class="n">clear_download_cache</span><span class="p">(</span><span class="n">pkgname</span><span class="o">=</span><span class="s1">&#39;lkspacecraft&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 <section id="extending-lkspacecraft">
 <h3>Extending <code class="docutils literal notranslate"><span class="pre">lkspacecraft</span></code><a class="headerlink" href="#extending-lkspacecraft" title="Link to this heading">#</a></h3>
 <p>If you wanted to extend <code class="docutils literal notranslate"><span class="pre">lkspacecraft</span></code> to include more spacecraft you would
@@ -555,7 +566,7 @@ important you use the spacecraft time in all functions.</p>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Usage</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
