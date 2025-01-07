@@ -1,16 +1,16 @@
-import os
-
 import astropy.units as u
 import numpy as np
+import spiceypy
 from astropy.time import Time
 
 import lkspacecraft
 
 
 def test_init():
-    os.path.isfile(lkspacecraft.PACKAGEDIR + "/data/Meta.txt")
     lkspacecraft.KeplerSpacecraft()
     lkspacecraft.TESSSpacecraft()
+    nkernels = spiceypy.ktotal("ALL")
+    assert nkernels > 600
 
 
 def test_kepler():
