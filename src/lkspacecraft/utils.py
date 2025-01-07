@@ -12,7 +12,7 @@ from astropy.utils.data import clear_download_cache as _astropy_clear_download_c
 from astropy.utils.data import download_file, import_file_to_cache, is_url_in_cache
 from tqdm import tqdm
 
-from . import KERNELDIR, PACKAGEDIR
+from . import log
 
 KERNELS = {
     "naif0012.tls": "https://naif.jpl.nasa.gov/pub/naif/generic_kernels/lsk/",
@@ -56,9 +56,11 @@ def get_file_paths():
     file_names = list(KERNELS.keys())
     progress_bar = None
     for idx, file_name in enumerate(file_names):
+        log.debug(f"Finding {file_name}.")
         url = KERNELS[file_name]
         if is_url_in_cache(url + file_name, pkgname="lkspacecraft"):
             file_paths.append(get_file_path(url + file_name))
+            log.debug(f"Found {file_name} in cache.")
             continue
         if progress_bar is None:
             progress_bar = tqdm(
@@ -70,6 +72,7 @@ def get_file_paths():
             file_paths.append(get_file_path(url + file_name))
             progress_bar.n = idx
             progress_bar.refresh()
+            log.debug(f"Downloaded {file_name}.")
     return file_paths
 
 

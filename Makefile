@@ -5,7 +5,7 @@ all: isort black flake8 pytest
 
 # Run the unit tests using `pytest`
 pytest:
-	poetry run pytest src tests
+	poetry run pytest src tests --log-cli-level=DEBUG
 
 # Lint the code using `flake8`
 flake8:
