@@ -36,8 +36,17 @@ def get_tess_bsp():
         for l in df[0]
         if "TESS_EPH_DEF" in l
     }
+    _ = tess_bsp.pop("TESS_EPH_DEF_2018004_01.bsp")
+    _ = tess_bsp.pop("TESS_EPH_DEF_2018080_01.bsp")
     return tess_bsp
 
+
+KERNELS.update(
+    {
+        "TESS_EPH_PRE_2018150_01.bsp": "https://archive.stsci.edu/missions/tess/models/",
+        "TESS_EPH_PRE_2018186_01.bsp": "https://archive.stsci.edu/missions/tess/models/",
+    }
+)
 
 KERNELS.update(get_tess_bsp())
 
