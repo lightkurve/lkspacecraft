@@ -31,7 +31,6 @@ Kepler and TESS spacecrafts. This will enable you to access
 .. image:: https://raw.githubusercontent.com/lightkurve/lkspacecraft/main/docs/images/tess_wrt_earth.png
    :width: 400px
    :alt: TESS position with respect to the earth.
-   :align: center
 
 Requirements
 ------------
@@ -46,14 +45,14 @@ Installation
 
 You can install this package with ``pip`` using
 
-::
+.. code-block:: console
 
    pip install lkspacecraft --upgrade
 
 You can also install this package by cloning the repo and then
 installing via poetry
 
-::
+.. code-block:: console
 
    git clone https://github.com/lightkurve/lkspacecraft.git
    cd lkspacecraft
@@ -73,7 +72,7 @@ kernels (i.e. when the mission was operational).
 
 You can find the start and end times of the kernels using the following
 
-.. code:: python
+.. code-block:: python
 
    from lkspacecraft import KeplerSpacecraft
 
@@ -85,7 +84,7 @@ All times in ``lkspacecraft`` use ``astropy.time.Time`` objects. Using the
 will provide you with the position or velocity in cartesian coordinates,
 for example
 
-.. code:: python
+.. code-block:: python
 
    from lkspacecraft import KeplerSpacecraft
    from astropy.time import Time
@@ -103,7 +102,7 @@ will result in
 This will give the velocity with respect to the solar system barycenter
 by default, but you can specify the earth or moon using
 
-.. code:: python
+.. code-block:: python
 
    from lkspacecraft import KeplerSpacecraft
    from astropy.time import Time
@@ -117,7 +116,7 @@ source at a given RA/Dec using ``lkspacecraft``\ ’s
 ``get_barycentric_time_correction`` function. This will give you the
 time delay in seconds from spacecraft time to time at the barycenter.
 
-.. code:: python
+.. code-block:: python
 
    from lkspacecraft import KeplerSpacecraft
    from astropy.time import Time
@@ -128,7 +127,7 @@ time delay in seconds from spacecraft time to time at the barycenter.
 
 Finally you can calculate velocity aberration using
 
-.. code:: python
+.. code-block:: python
 
    from lkspacecraft import KeplerSpacecraft
    from astropy.time import Time
@@ -147,8 +146,7 @@ Kernels
 -------
 
 ``lkspacecraft`` will obtain the SPICE kernels for Kepler and TESS for you
-store them within the packages ``src/lkspacecraft/data/kernels`` directory.
-It will then munge them into a meta kernel on import.
+store them. Kernels can be found here:
 
 The generic kernels can be obtained from NAIF generic kernels:
 https://naif.jpl.nasa.gov/pub/naif/generic_kernels/
@@ -164,19 +162,20 @@ When you first load `lkspacecraft` into Python all the kernels will be downloade
 
 The total file volume for the kernels is ~1GB. These cached files are stored using `astropy`'s cache. If you want to clear the cache you can do either of the following;
 
-```python
-from lkspacecraft.utils import clear_download_cache
-clear_download_cache()
-```
+.. code-block:: python
 
-```python
-from astropy.utils.data import clear_download_cache
-clear_download_cache(pkgname='lkspacecraft')
-```
+   from lkspacecraft.utils import clear_download_cache
+   clear_download_cache()
+   
+.. code-block:: python
+
+   from astropy.utils.data import clear_download_cache
+   clear_download_cache(pkgname='lkspacecraft')
+
 
 
 Extending ``lkspacecraft``
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you wanted to extend ``lkspacecraft`` to include more spacecraft you would
 need to include more kernels in the kernel directory and ensure they are
@@ -203,7 +202,7 @@ spacecraft**. For SPOC products, this is the time in the ``'TIME'``
 column of any fits file, with the time corrections from ``TIME_CORR``
 subtracted. i.e.
 
-.. code:: python
+.. code-block:: python
 
        t = np.asarray(hdulist[1].data['TIME'], dtype=float)
        tcorr = np.asarray(hdulist[1].data['TIMECORR'], dtype=float)
@@ -230,9 +229,6 @@ To install ``lkspacecraft``, run the following command in a terminal window:
 
 The ``--upgrade`` flag is optional, but recommended if you already
 have ``lkspacecraft`` installed and want to upgrade to the latest version.
-
-Usage
------
 
 You can use `lkspacecraft` to access position and velocity information of Kepler and TESS using input times
 
