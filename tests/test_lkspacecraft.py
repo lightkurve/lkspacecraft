@@ -4,9 +4,11 @@ import spiceypy
 from astropy.time import Time
 
 import lkspacecraft
+from lkspacecraft.utils import KERNELS
 
 
 def test_init():
+    assert len(KERNELS) > 600
     lkspacecraft.KeplerSpacecraft()
     lkspacecraft.TESSSpacecraft()
     nkernels = spiceypy.ktotal("ALL")
