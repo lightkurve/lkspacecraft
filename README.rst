@@ -294,6 +294,8 @@ details.
 
 Changelog:
 ==========
+v1.0.4
+   - Made Python version >=3.9 compliant
 v1.0.3
    - Added ability to calculate velocity aberration on an array of RA/Decs.
    - Added ability to calculate barycentric time correction on an array of RA/Decs.
