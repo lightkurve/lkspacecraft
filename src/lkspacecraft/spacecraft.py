@@ -197,17 +197,23 @@ class Spacecraft(object):
         dec: float, np.ndarray
             The declination of the target in degrees
         """
+        zerod = np.ndim(ra) == 0
+        ra, dec = np.atleast_1d(ra), np.atleast_1d(dec)
 
+        # Compute the star vector (normalized direction vector for the target)
         star_vector = np.array(
             [
-                np.cos(np.deg2rad(dec)) * np.cos(np.deg2rad(ra)),
-                np.cos(np.deg2rad(dec)) * np.sin(np.deg2rad(ra)),
-                np.sin(np.deg2rad(dec)),
+                np.cos(np.deg2rad(dec.ravel())) * np.cos(np.deg2rad(ra.ravel())),
+                np.cos(np.deg2rad(dec.ravel())) * np.sin(np.deg2rad(ra.ravel())),
+                np.sin(np.deg2rad(dec.ravel())),
             ]
         )
         star_vector /= np.linalg.norm(star_vector, axis=0)
         position = self.get_spacecraft_position(time=time)
-        return ((position * u.km).dot(star_vector) / (c)).to(u.s).value
+        tcorr = ((position * u.km).dot(star_vector) / (c)).to(u.s).value
+        if zerod:
+            return tcorr[:, 0]
+        return tcorr.reshape((*time.shape, *ra.shape))
 
     def get_velocity_aberrated_positions(
         self, time: Time, ra: float, dec: float
@@ -225,16 +231,17 @@ class Spacecraft(object):
         dec: float, np.ndarray
             The declination of the target in degrees
         """
+        zerod = np.ndim(ra) == 0
+        ra, dec = np.atleast_1d(ra), np.atleast_1d(dec)
 
         # Compute the star vector (normalized direction vector for the target)
         star_vector = np.array(
             [
-                np.cos(np.deg2rad(dec)) * np.cos(np.deg2rad(ra)),
-                np.cos(np.deg2rad(dec)) * np.sin(np.deg2rad(ra)),
-                np.sin(np.deg2rad(dec)),
+                np.cos(np.deg2rad(dec.ravel())) * np.cos(np.deg2rad(ra.ravel())),
+                np.cos(np.deg2rad(dec.ravel())) * np.sin(np.deg2rad(ra.ravel())),
+                np.sin(np.deg2rad(dec.ravel())),
             ]
         )
-
         # Normalize star_vector for safety (though it should already be normalized)
         star_vector /= np.linalg.norm(star_vector, axis=0)
 
@@ -245,7 +252,8 @@ class Spacecraft(object):
         beta = velocity / c.value
 
         # Compute the scalar product beta \cdot star_vector
-        beta_dot_star = np.sum(beta * star_vector, axis=-1)
+        # beta_dot_star = np.sum(beta * star_vector, axis=-1)
+        beta_dot_star = beta.dot(star_vector)
 
         # Compute the relativistic factor gamma
         gamma = 1 / np.sqrt(1 - np.sum(beta**2, axis=-1))
@@ -253,10 +261,13 @@ class Spacecraft(object):
         # Apply the aberration formula
         factor = 1 / (1 + beta_dot_star)
 
-        star_vector_ab = factor[:, None] * (gamma[:, None] * star_vector + beta)
+        #    return factor.shape, gamma.shape, star_vector.shape, beta.shape
+        star_vector_ab = factor[:, None, :] * (
+            gamma[:, None, None] * star_vector[None, :, :] + beta[:, :, None]
+        )
 
         # Normalize the aberrated vector
-        star_vector_ab /= np.linalg.norm(star_vector_ab, axis=-1, keepdims=True)
+        star_vector_ab /= np.linalg.norm(star_vector_ab, axis=1, keepdims=True)
 
         # Convert back to RA and Dec
         ra_aberrated = np.rad2deg(
@@ -268,9 +279,14 @@ class Spacecraft(object):
         ra_aberrated = np.mod(ra_aberrated, 360)
 
         # Reshape output to match input dimensions
-        return (
-            ra_aberrated,
-            dec_aberrated,
+        ra_aberrated, dec_aberrated = (
+            ra_aberrated.reshape((*time.shape, *ra.shape)),
+            dec_aberrated.reshape((*time.shape, *dec.shape)),
+        )
+        if zerod:
+            return ra_aberrated[:, 0], dec_aberrated[:, 0]
+        return ra_aberrated.reshape((*time.shape, *ra.shape)), dec_aberrated.reshape(
+            (*time.shape, *ra.shape)
         )
 
 
