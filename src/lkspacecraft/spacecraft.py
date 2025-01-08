@@ -339,3 +339,6 @@ class TESSSpacecraft(Spacecraft):
 
     spacecraft_code = -95
     time_offset = 2457000
+
+    def __repr__(self):
+        return "TESSSpacecraft"
