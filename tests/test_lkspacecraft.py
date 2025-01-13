@@ -37,3 +37,44 @@ def test_kepler():
     ra, dec = 285.6794224553767, +50.2413060048164
     tcorr = ks.get_barycentric_time_correction(t, ra, dec)
     assert np.isclose((tcorr.max() - tcorr.min()), 320, atol=5)
+
+
+def test_dva():
+    ts = lkspacecraft.TESSSpacecraft()
+    start = Time("2025-01-01T00:00:00.000", format="isot")
+    t = Time(np.linspace(start.jd, start.jd + 28, 360), format="jd")
+
+    dra, ddec = ts.get_differential_velocity_aberrated_positions(
+        time=t, ra=200, dec=10, ra0=200, dec0=10
+    )
+
+    assert np.allclose(dra, 200)
+    assert np.allclose(ddec, 10)
+    assert dra.shape == (len(t),)
+    assert dra.shape == (len(t),)
+
+    dra, ddec = ts.get_differential_velocity_aberrated_positions(
+        time=t, ra=[200], dec=[10], ra0=190, dec0=0
+    )
+    assert dra.shape == (len(t), 1)
+    assert dra.shape == (len(t), 1)
+
+    dra, ddec = ts.get_differential_velocity_aberrated_positions(
+        time=t,
+        ra=np.random.normal(size=(10)),
+        dec=np.random.normal(size=(10)),
+        ra0=190,
+        dec0=0,
+    )
+    assert dra.shape == (len(t), 10)
+    assert dra.shape == (len(t), 10)
+
+    dra, ddec = ts.get_differential_velocity_aberrated_positions(
+        time=t,
+        ra=np.random.normal(size=(10, 11)),
+        dec=np.random.normal(size=(10, 11)),
+        ra0=190,
+        dec0=0,
+    )
+    assert dra.shape == (len(t), 10, 11)
+    assert dra.shape == (len(t), 10, 11)

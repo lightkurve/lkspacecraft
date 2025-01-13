@@ -294,6 +294,8 @@ details.
 
 Changelog:
 ==========
+v1.0.5
+   - Added a function for calculating DVA
 v1.0.4
    - Made Python version >=3.9 compliant
 v1.0.3

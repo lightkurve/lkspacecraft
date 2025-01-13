@@ -7,6 +7,7 @@ import numpy as np
 import numpy.typing as npt
 import spiceypy
 from astropy.constants import c
+from astropy.coordinates import SkyCoord
 from astropy.time import Time
 from astropy.utils.data import cache_contents
 
@@ -288,6 +289,59 @@ class Spacecraft(object):
         return ra_aberrated.reshape((*time.shape, *ra.shape)), dec_aberrated.reshape(
             (*time.shape, *ra.shape)
         )
+
+    def get_differential_velocity_aberrated_positions(
+        self, time: Time, ra: float, dec: float, ra0: float, dec0: float
+    ) -> npt.NDArray:
+        """Returns the RA and Dec after differential velocity aberration has been applied.
+
+        This is the effect of velocity aberration, accounting for the fact that the spacecraft tracks a given point in the sky.
+        All stars undergo velocity aberration. During observation, the spacecraft tracks stars, therefore accounting
+        for the bulk of this motion. This function enables you to calculate the differential velocity aberration
+        from the spacecraft pointing.
+
+        Note that `time` here must be time in spacecraft time, in UTC format.
+
+        Parameters:
+        -----------
+        time: astropy.time.Time
+            Time array at which to estimate position. Time must be in UTC.
+        ra: float, np.ndarray
+            The right ascention of the target(s) in degrees
+        dec: float, np.ndarray
+            The declination of the target(s) in degrees
+        ra0: float
+            The RA of the target which the spacecraft is pointed towards.
+        dec0: float
+            The Dec of the target which the spacecraft is pointed towards.
+        """
+        nt = len(time) if np.ndim(time) == 1 else 1
+        ra_ab, dec_ab = self.get_velocity_aberrated_positions(
+            time, np.atleast_1d(ra).ravel(), np.atleast_1d(dec).ravel()
+        )
+        ra_ab, dec_ab = np.atleast_2d(ra_ab), np.atleast_2d(dec_ab)
+        ra0_ab, dec0_ab = self.get_velocity_aberrated_positions(time, ra0, dec0)
+        sep = SkyCoord(ra0, dec0, unit="deg").separation(
+            SkyCoord(ra0_ab, dec0_ab, unit="deg")
+        )
+        pa = SkyCoord(ra0, dec0, unit="deg").position_angle(
+            SkyCoord(ra0_ab, dec0_ab, unit="deg")
+        )
+
+        recentered_coords = SkyCoord(ra_ab, dec_ab, unit="deg").directional_offset_by(
+            separation=-sep[:, None], position_angle=pa[:, None]
+        )
+
+        ra_ab_recentered, dec_ab_recentered = (
+            recentered_coords.ra.deg,
+            recentered_coords.dec.deg,
+        )
+        ra_ab_recentered.reshape((nt, *np.atleast_1d(ra).shape))
+        ra_ab_recentered = ra_ab_recentered.reshape((nt, *np.atleast_1d(ra).shape))
+        dec_ab_recentered = dec_ab_recentered.reshape((nt, *np.atleast_1d(ra).shape))
+        if np.ndim(ra) == 0:
+            return ra_ab_recentered[:, 0], dec_ab_recentered[:, 0]
+        return ra_ab_recentered, dec_ab_recentered
 
 
 class KeplerSpacecraft(Spacecraft):
