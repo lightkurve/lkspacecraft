@@ -30,8 +30,8 @@
   <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
     <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
   
   <!-- So that users can add custom icons -->
@@ -41,7 +41,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../_static/documentation_options.js?v=8d563738"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -54,7 +54,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
-    <meta name="docbuild:last-update" content="07 Jan 2025"/>
+    <meta name="docbuild:last-update" content="19 Feb 2025"/>
   </head>
   
   
@@ -421,12 +421,12 @@
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lkspacecraft</span> <span class="kn">import</span> <span class="n">KeplerSpacecraft</span>
-<span class="kn">from</span> <span class="nn">lksearch</span> <span class="kn">import</span> <span class="n">KeplerSearch</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lkspacecraft</span><span class="w"> </span><span class="kn">import</span> <span class="n">KeplerSpacecraft</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lksearch</span><span class="w"> </span><span class="kn">import</span> <span class="n">KeplerSearch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
-<span class="kn">from</span> <span class="nn">astropy.time</span> <span class="kn">import</span> <span class="n">Time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">fits</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.time</span><span class="w"> </span><span class="kn">import</span> <span class="n">Time</span>
 </pre></div>
 </div>
 </div>
@@ -569,7 +569,7 @@ array([-30.41441299, -30.37170985, -30.32899557, ..., 193.18638174,
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 </pre></div>
 </div>
 </div>
@@ -602,8 +602,8 @@ array([-30.41441299, -30.37170985, -30.32899557, ..., 193.18638174,
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">lksearch</span> <span class="kn">import</span> <span class="n">TESSSearch</span>
-<span class="kn">from</span> <span class="nn">lkspacecraft</span> <span class="kn">import</span> <span class="n">TESSSpacecraft</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lksearch</span><span class="w"> </span><span class="kn">import</span> <span class="n">TESSSearch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lkspacecraft</span><span class="w"> </span><span class="kn">import</span> <span class="n">TESSSpacecraft</span>
 </pre></div>
 </div>
 </div>
@@ -792,7 +792,7 @@ array([155.38559868, 155.38850227, 155.39132197, ..., 148.89153462,
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
     <br/>
   </p>
 </div>

@@ -29,8 +29,8 @@
   <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 <link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
   
   <!-- So that users can add custom icons -->
   <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
@@ -39,7 +39,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../_static/documentation_options.js?v=8d563738"></script>
-    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = '_modules/lkspacecraft/spacecraft';</script>
@@ -48,7 +48,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
-    <meta name="docbuild:last-update" content="07 Jan 2025"/>
+    <meta name="docbuild:last-update" content="19 Feb 2025"/>
   </head>
   
   
@@ -399,23 +399,24 @@
   <h1>Source code for lkspacecraft.spacecraft</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;Classes for working with the orbits of spacecraft&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Union</span>
 
-<span class="kn">import</span> <span class="nn">astropy.units</span> <span class="k">as</span> <span class="nn">u</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">numpy.typing</span> <span class="k">as</span> <span class="nn">npt</span>
-<span class="kn">import</span> <span class="nn">spiceypy</span>
-<span class="kn">from</span> <span class="nn">astropy.constants</span> <span class="kn">import</span> <span class="n">c</span>
-<span class="kn">from</span> <span class="nn">astropy.time</span> <span class="kn">import</span> <span class="n">Time</span>
-<span class="kn">from</span> <span class="nn">astropy.utils.data</span> <span class="kn">import</span> <span class="n">cache_contents</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">astropy.units</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">u</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">npt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">spiceypy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">c</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.coordinates</span><span class="w"> </span><span class="kn">import</span> <span class="n">SkyCoord</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.time</span><span class="w"> </span><span class="kn">import</span> <span class="n">Time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">cache_contents</span>
 
 
-<span class="k">class</span> <span class="nc">BadEphemeris</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">BadEphemeris</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">Spacecraft</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Spacecraft</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A base class for handling spacecraft ephemeris data and calculations.</span>
 
@@ -444,7 +445,7 @@
 <span class="sd">        Computes the RA and Dec of a target after applying velocity aberration.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Initializes the Spacecraft object and loads SPICE kernels.</span>
 
@@ -463,7 +464,7 @@
         <span class="n">spiceypy</span><span class="o">.</span><span class="n">furnsh</span><span class="p">(</span><span class="n">meta_kernel</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_kernel_start_and_end_times</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_get_kernel_start_and_end_times</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_kernel_start_and_end_times</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Get a list of loaded kernels</span>
         <span class="n">kernel_list</span> <span class="o">=</span> <span class="n">spiceypy</span><span class="o">.</span><span class="n">ktotal</span><span class="p">(</span><span class="s2">&quot;ALL&quot;</span><span class="p">)</span>  <span class="c1"># Get the count of all loaded kernels</span>
         <span class="n">start_et</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)</span>
@@ -501,10 +502,10 @@
         <span class="n">end_time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">spiceypy</span><span class="o">.</span><span class="n">et2datetime</span><span class="p">(</span><span class="n">end_et</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">start_time</span><span class="p">,</span> <span class="n">end_time</span>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;KeplerSpacecraft&quot;</span>
 
-    <span class="k">def</span> <span class="nf">_process_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_process_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">):</span>
         <span class="c1"># convert to astropy.time.Time if needed</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">Time</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
@@ -520,7 +521,7 @@
             <span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">([</span><span class="n">time</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">time</span>
 
-    <span class="k">def</span> <span class="nf">_get_state_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="s2">&quot;SOLAR SYSTEM BARYCENTER&quot;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_state_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="s2">&quot;SOLAR SYSTEM BARYCENTER&quot;</span><span class="p">):</span>
         <span class="n">time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
         <span class="n">et</span> <span class="o">=</span> <span class="n">spiceypy</span><span class="o">.</span><span class="n">str2et</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">isot</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
@@ -537,7 +538,7 @@
             <span class="p">)</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">state</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">light_travel_time</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get_spacecraft_position</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_spacecraft_position</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="s2">&quot;SOLAR SYSTEM BARYCENTER&quot;</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the position vector (x, y, z) in [km] for all `time` w.r.t the observer.</span>
@@ -551,7 +552,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_state_vector</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="n">observer</span><span class="p">)[</span><span class="mi">0</span><span class="p">][:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">get_spacecraft_velocity</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_spacecraft_velocity</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="s2">&quot;SOLAR SYSTEM BARYCENTER&quot;</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the position vector (vx, vy, vz) in [km/s] for all `time` w.r.t the observer.</span>
@@ -565,7 +566,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_state_vector</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="n">observer</span><span class="p">)[</span><span class="mi">0</span><span class="p">][:,</span> <span class="mi">3</span><span class="p">:]</span>
 
-    <span class="k">def</span> <span class="nf">get_spacecraft_light_travel_time</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_spacecraft_light_travel_time</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="s2">&quot;SOLAR SYSTEM BARYCENTER&quot;</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the one-way light travel time in seconds for all `time` w.r.t the observer.</span>
@@ -579,7 +580,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_state_vector</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="n">observer</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span>
 
-    <span class="k">def</span> <span class="nf">get_barycentric_time_correction</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_barycentric_time_correction</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">,</span> <span class="n">ra</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">],</span> <span class="n">dec</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the barycentric time correction in days for observations of a particular target specified by RA and Dec.</span>
@@ -596,19 +597,25 @@
 <span class="sd">        dec: float, np.ndarray</span>
 <span class="sd">            The declination of the target in degrees</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">zerod</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndim</span><span class="p">(</span><span class="n">ra</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="n">ra</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">ra</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">dec</span><span class="p">)</span>
 
+        <span class="c1"># Compute the star vector (normalized direction vector for the target)</span>
         <span class="n">star_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
             <span class="p">[</span>
-                <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">dec</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">ra</span><span class="p">)),</span>
-                <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">dec</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">ra</span><span class="p">)),</span>
-                <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">dec</span><span class="p">)),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">dec</span><span class="o">.</span><span class="n">ravel</span><span class="p">()))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">ra</span><span class="o">.</span><span class="n">ravel</span><span class="p">())),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">dec</span><span class="o">.</span><span class="n">ravel</span><span class="p">()))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">ra</span><span class="o">.</span><span class="n">ravel</span><span class="p">())),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">dec</span><span class="o">.</span><span class="n">ravel</span><span class="p">())),</span>
             <span class="p">]</span>
         <span class="p">)</span>
         <span class="n">star_vector</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">star_vector</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">position</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_spacecraft_position</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">((</span><span class="n">position</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">star_vector</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">c</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">tcorr</span> <span class="o">=</span> <span class="p">((</span><span class="n">position</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">star_vector</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">c</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">if</span> <span class="n">zerod</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">tcorr</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">tcorr</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">*</span><span class="n">time</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="o">*</span><span class="n">ra</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">get_velocity_aberrated_positions</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_velocity_aberrated_positions</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">,</span> <span class="n">ra</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">dec</span><span class="p">:</span> <span class="nb">float</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the RA and Dec after velocity aberration has been applied.</span>
@@ -624,16 +631,17 @@
 <span class="sd">        dec: float, np.ndarray</span>
 <span class="sd">            The declination of the target in degrees</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">zerod</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndim</span><span class="p">(</span><span class="n">ra</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="n">ra</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">ra</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">dec</span><span class="p">)</span>
 
         <span class="c1"># Compute the star vector (normalized direction vector for the target)</span>
         <span class="n">star_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
             <span class="p">[</span>
-                <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">dec</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">ra</span><span class="p">)),</span>
-                <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">dec</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">ra</span><span class="p">)),</span>
-                <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">dec</span><span class="p">)),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">dec</span><span class="o">.</span><span class="n">ravel</span><span class="p">()))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">ra</span><span class="o">.</span><span class="n">ravel</span><span class="p">())),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">dec</span><span class="o">.</span><span class="n">ravel</span><span class="p">()))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">ra</span><span class="o">.</span><span class="n">ravel</span><span class="p">())),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">dec</span><span class="o">.</span><span class="n">ravel</span><span class="p">())),</span>
             <span class="p">]</span>
         <span class="p">)</span>
-
         <span class="c1"># Normalize star_vector for safety (though it should already be normalized)</span>
         <span class="n">star_vector</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">star_vector</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
@@ -644,7 +652,8 @@
         <span class="n">beta</span> <span class="o">=</span> <span class="n">velocity</span> <span class="o">/</span> <span class="n">c</span><span class="o">.</span><span class="n">value</span>
 
         <span class="c1"># Compute the scalar product beta \cdot star_vector</span>
-        <span class="n">beta_dot_star</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">beta</span> <span class="o">*</span> <span class="n">star_vector</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># beta_dot_star = np.sum(beta * star_vector, axis=-1)</span>
+        <span class="n">beta_dot_star</span> <span class="o">=</span> <span class="n">beta</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">star_vector</span><span class="p">)</span>
 
         <span class="c1"># Compute the relativistic factor gamma</span>
         <span class="n">gamma</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">beta</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
@@ -652,10 +661,13 @@
         <span class="c1"># Apply the aberration formula</span>
         <span class="n">factor</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">beta_dot_star</span><span class="p">)</span>
 
-        <span class="n">star_vector_ab</span> <span class="o">=</span> <span class="n">factor</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">gamma</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">star_vector</span> <span class="o">+</span> <span class="n">beta</span><span class="p">)</span>
+        <span class="c1">#    return factor.shape, gamma.shape, star_vector.shape, beta.shape</span>
+        <span class="n">star_vector_ab</span> <span class="o">=</span> <span class="n">factor</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="n">gamma</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">star_vector</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="p">)</span>
 
         <span class="c1"># Normalize the aberrated vector</span>
-        <span class="n">star_vector_ab</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">star_vector_ab</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">star_vector_ab</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">star_vector_ab</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
         <span class="c1"># Convert back to RA and Dec</span>
         <span class="n">ra_aberrated</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span>
@@ -667,15 +679,73 @@
         <span class="n">ra_aberrated</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">ra_aberrated</span><span class="p">,</span> <span class="mi">360</span><span class="p">)</span>
 
         <span class="c1"># Reshape output to match input dimensions</span>
-        <span class="k">return</span> <span class="p">(</span>
-            <span class="n">ra_aberrated</span><span class="p">,</span>
-            <span class="n">dec_aberrated</span><span class="p">,</span>
+        <span class="n">ra_aberrated</span><span class="p">,</span> <span class="n">dec_aberrated</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">ra_aberrated</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">*</span><span class="n">time</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="o">*</span><span class="n">ra</span><span class="o">.</span><span class="n">shape</span><span class="p">)),</span>
+            <span class="n">dec_aberrated</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">*</span><span class="n">time</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="o">*</span><span class="n">dec</span><span class="o">.</span><span class="n">shape</span><span class="p">)),</span>
         <span class="p">)</span>
+        <span class="k">if</span> <span class="n">zerod</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ra_aberrated</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">dec_aberrated</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">ra_aberrated</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">*</span><span class="n">time</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="o">*</span><span class="n">ra</span><span class="o">.</span><span class="n">shape</span><span class="p">)),</span> <span class="n">dec_aberrated</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
+            <span class="p">(</span><span class="o">*</span><span class="n">time</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="o">*</span><span class="n">ra</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_differential_velocity_aberrated_positions</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">,</span> <span class="n">ra</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">dec</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ra0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">dec0</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the RA and Dec after differential velocity aberration has been applied.</span>
+
+<span class="sd">        This is the effect of velocity aberration, accounting for the fact that the spacecraft tracks a given point in the sky.</span>
+<span class="sd">        All stars undergo velocity aberration. During observation, the spacecraft tracks stars, therefore accounting</span>
+<span class="sd">        for the bulk of this motion. This function enables you to calculate the differential velocity aberration</span>
+<span class="sd">        from the spacecraft pointing.</span>
+
+<span class="sd">        Note that `time` here must be time in spacecraft time, in UTC format.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        time: astropy.time.Time</span>
+<span class="sd">            Time array at which to estimate position. Time must be in UTC.</span>
+<span class="sd">        ra: float, np.ndarray</span>
+<span class="sd">            The right ascention of the target(s) in degrees</span>
+<span class="sd">        dec: float, np.ndarray</span>
+<span class="sd">            The declination of the target(s) in degrees</span>
+<span class="sd">        ra0: float</span>
+<span class="sd">            The RA of the target which the spacecraft is pointed towards.</span>
+<span class="sd">        dec0: float</span>
+<span class="sd">            The Dec of the target which the spacecraft is pointed towards.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">nt</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">ndim</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">1</span>
+        <span class="n">ra_ab</span><span class="p">,</span> <span class="n">dec_ab</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_velocity_aberrated_positions</span><span class="p">(</span>
+            <span class="n">time</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">ra</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">dec</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="n">ra_ab</span><span class="p">,</span> <span class="n">dec_ab</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">ra_ab</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">dec_ab</span><span class="p">)</span>
+        <span class="n">ra0_ab</span><span class="p">,</span> <span class="n">dec0_ab</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_velocity_aberrated_positions</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">ra0</span><span class="p">,</span> <span class="n">dec0</span><span class="p">)</span>
+        <span class="n">sep</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra0</span><span class="p">,</span> <span class="n">dec0</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;deg&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">separation</span><span class="p">(</span>
+            <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra0_ab</span><span class="p">,</span> <span class="n">dec0_ab</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;deg&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">pa</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra0</span><span class="p">,</span> <span class="n">dec0</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;deg&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">position_angle</span><span class="p">(</span>
+            <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra0_ab</span><span class="p">,</span> <span class="n">dec0_ab</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;deg&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">recentered_coords</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra_ab</span><span class="p">,</span> <span class="n">dec_ab</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;deg&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">directional_offset_by</span><span class="p">(</span>
+            <span class="n">separation</span><span class="o">=-</span><span class="n">sep</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">position_angle</span><span class="o">=</span><span class="n">pa</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="n">ra_ab_recentered</span><span class="p">,</span> <span class="n">dec_ab_recentered</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">recentered_coords</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span>
+            <span class="n">recentered_coords</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">ra_ab_recentered</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nt</span><span class="p">,</span> <span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">ra</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+        <span class="n">ra_ab_recentered</span> <span class="o">=</span> <span class="n">ra_ab_recentered</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nt</span><span class="p">,</span> <span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">ra</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+        <span class="n">dec_ab_recentered</span> <span class="o">=</span> <span class="n">dec_ab_recentered</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nt</span><span class="p">,</span> <span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">ra</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">ndim</span><span class="p">(</span><span class="n">ra</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ra_ab_recentered</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">dec_ab_recentered</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">ra_ab_recentered</span><span class="p">,</span> <span class="n">dec_ab_recentered</span>
 
 
 <div class="viewcode-block" id="KeplerSpacecraft">
 <a class="viewcode-back" href="../../apidoc.html#lkspacecraft.KeplerSpacecraft">[docs]</a>
-<span class="k">class</span> <span class="nc">KeplerSpacecraft</span><span class="p">(</span><span class="n">Spacecraft</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">KeplerSpacecraft</span><span class="p">(</span><span class="n">Spacecraft</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A class representing the Kepler spacecraft.</span>
 
@@ -700,7 +770,7 @@
 
 <div class="viewcode-block" id="KeplerSpacecraft.get_barycentric_time_correction">
 <a class="viewcode-back" href="../../apidoc.html#lkspacecraft.KeplerSpacecraft.get_barycentric_time_correction">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_barycentric_time_correction</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_barycentric_time_correction</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">,</span> <span class="n">ra</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">],</span> <span class="n">dec</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the barycentric time correction in days for observations of a particular target specified by RA and Dec.</span>
@@ -731,7 +801,7 @@
 
 <div class="viewcode-block" id="TESSSpacecraft">
 <a class="viewcode-back" href="../../apidoc.html#lkspacecraft.TESSSpacecraft">[docs]</a>
-<span class="k">class</span> <span class="nc">TESSSpacecraft</span><span class="p">(</span><span class="n">Spacecraft</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TESSSpacecraft</span><span class="p">(</span><span class="n">Spacecraft</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A class representing the TESS spacecraft.</span>
 
@@ -745,7 +815,10 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">spacecraft_code</span> <span class="o">=</span> <span class="o">-</span><span class="mi">95</span>
-    <span class="n">time_offset</span> <span class="o">=</span> <span class="mi">2457000</span></div>
+    <span class="n">time_offset</span> <span class="o">=</span> <span class="mi">2457000</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;TESSSpacecraft&quot;</span></div>
 
 </pre></div>
 
@@ -797,7 +870,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
     <br/>
   </p>
 </div>
