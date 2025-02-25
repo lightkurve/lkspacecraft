@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "lkspacecraft"
-version = "1.0.5"
+version = "1.0.6"
 description = ""
 authors = ["Christina Hedges <christina.l.hedges@nasa.gov>", "Tyler Pritchard <tyler.a.pritchard@nasa.gov>"]
 readme = "README.rst"
