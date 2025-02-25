@@ -31,4 +31,4 @@ jobs:
 
       - name: Deploy to GitHub Pages
         run: |
-          poetry run ghp-import -n -p -f _build/html
+          poetry run ghp-import -n -p -f docs/_build/html
