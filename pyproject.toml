@@ -10,6 +10,7 @@ python = ">=3.9,<4.0"
 spiceypy = "^6.0.0"
 matplotlib = "^3.9.2"
 astropy = ">=5.0.0"
+pandas = "^2.2.3"
 
 [tool.poetry.group.dev]
 optional = true
