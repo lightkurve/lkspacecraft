@@ -179,7 +179,7 @@ class Spacecraft(object):
         observer: string
             Observer body. Common options include "SOLAR SYSTEM BARYCENTER", "EARTH BARYCENTER", "MOON BARYCENTER"
         """
-        return self._get_state_vector(time=time, observer=observer)[1] / 2
+        return self._get_state_vector(time=time, observer=observer)[1]
 
     def get_barycentric_time_correction(
         self, time: Time, ra: Union[float, npt.NDArray], dec: Union[float, npt.NDArray]
