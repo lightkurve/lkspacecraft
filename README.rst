@@ -294,6 +294,8 @@ details.
 
 Changelog:
 ==========
+v1.1.0
+   - Bug fix @jorgemarpa for light travel time
 v1.0.5
    - Added a function for calculating DVA
 v1.0.4
