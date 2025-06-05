@@ -1,6 +1,7 @@
 import astropy.units as u
 import numpy as np
 import spiceypy
+from astropy.constants import c
 from astropy.time import Time
 
 import lkspacecraft
@@ -78,3 +79,12 @@ def test_dva():
     )
     assert dra.shape == (len(t), 10, 11)
     assert dra.shape == (len(t), 10, 11)
+
+
+def test_light_travel_time():
+    t = Time("2009-04-06 06:22:56.000025")
+    ks = lkspacecraft.KeplerSpacecraft()
+    dist = ((np.sum(ks.get_spacecraft_position(t) ** 2) ** 0.5) * u.km).to(u.m)
+    travel_time = ks.get_spacecraft_light_travel_time(t) * u.second
+    assert np.isclose(((dist / travel_time) / c), u.Quantity(1))
+    return

@@ -60,6 +60,17 @@ installing via poetry
    poetry install .
 
 
+This package will download and store SPICE kernels into a directory in your home area. This is approximately 1Gb of data at time of writing. This means that if you install this package in multiple environments, the SPICE kernels will not be redownloaded and will be shared between multiple installs. 
+
+To uninstall this package from your machine entirely you should clear the cache of SPICE kernel files using 
+
+.. code-block:: python
+
+   from astropy.utils.data import clear_download_cache
+   clear_download_cache(pkgname='lkspacecraft')
+
+or by deleting the `.lkspacecraft/cache/` directory in your home area. You can then uninstall with pip, or if you cloned the repository you can delete the directory.
+
 Usage
 -----
 
