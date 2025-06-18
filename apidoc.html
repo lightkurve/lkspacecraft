@@ -398,12 +398,13 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="module-lkspacecraft">
-<span id="api"></span><h1>API<a class="headerlink" href="#module-lkspacecraft" title="Link to this heading">#</a></h1>
+  <section id="api">
+<h1>API<a class="headerlink" href="#api" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="lkspacecraft.KeplerSpacecraft">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lkspacecraft.</span></span><span class="sig-name descname"><span class="pre">KeplerSpacecraft</span></span><a class="reference internal" href="_modules/lkspacecraft/spacecraft.html#KeplerSpacecraft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lkspacecraft.KeplerSpacecraft" title="Link to this definition">#</a></dt>
-<dd><p>A class representing the Kepler spacecraft.</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Spacecraft</span></code></p>
+<p>A class representing the Kepler spacecraft.</p>
 <p>This class extends the <code class="xref py py-obj docutils literal notranslate"><span class="pre">Spacecraft</span></code> base class and includes spacecraft-specific
 configurations and calculations, such as correcting for timing errors unique to the
 Kepler mission.</p>
@@ -447,12 +448,23 @@ This means that for SPOC data this should be the time without the SPOC barycentr
 <p>Note this also corrects the timing error in the Kepler TIME column, see <a class="reference external" href="https://archive.stsci.edu/kepler/timing_error.html">https://archive.stsci.edu/kepler/timing_error.html</a></p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">spacecraft_code</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-227</span></em><a class="headerlink" href="#id1" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lkspacecraft.KeplerSpacecraft.time_offset">
+<span class="sig-name descname"><span class="pre">time_offset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2454833</span></em><a class="headerlink" href="#lkspacecraft.KeplerSpacecraft.time_offset" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="lkspacecraft.TESSSpacecraft">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lkspacecraft.</span></span><span class="sig-name descname"><span class="pre">TESSSpacecraft</span></span><a class="reference internal" href="_modules/lkspacecraft/spacecraft.html#TESSSpacecraft"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lkspacecraft.TESSSpacecraft" title="Link to this definition">#</a></dt>
-<dd><p>A class representing the TESS spacecraft.</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Spacecraft</span></code></p>
+<p>A class representing the TESS spacecraft.</p>
 <p>This class extends the <code class="xref py py-obj docutils literal notranslate"><span class="pre">Spacecraft</span></code> base class and includes spacecraft-specific
 configurations, such as the unique SPICE NAIF ID code for the TESS mission.</p>
 <dl class="py attribute">
@@ -479,6 +491,16 @@ Use this mode if you want to test lkspacecraft as a dependency in your package.<
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.13)"><strong>Exception</strong></a> – If there is an issue loading the SPICE kernels or retrieving the kernel time coverage.</p>
 </dd>
 </dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">spacecraft_code</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-95</span></em><a class="headerlink" href="#id2" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lkspacecraft.TESSSpacecraft.time_offset">
+<span class="sig-name descname"><span class="pre">time_offset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2457000</span></em><a class="headerlink" href="#lkspacecraft.TESSSpacecraft.time_offset" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </section>
@@ -534,10 +556,14 @@ Use this mode if you want to test lkspacecraft as a dependency in your package.<
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lkspacecraft.KeplerSpacecraft.spacecraft_code"><code class="docutils literal notranslate"><span class="pre">KeplerSpacecraft.spacecraft_code</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lkspacecraft.KeplerSpacecraft.get_barycentric_time_correction"><code class="docutils literal notranslate"><span class="pre">KeplerSpacecraft.get_barycentric_time_correction()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id0"><code class="docutils literal notranslate"><span class="pre">KeplerSpacecraft.get_barycentric_time_correction()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">KeplerSpacecraft.spacecraft_code</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lkspacecraft.KeplerSpacecraft.time_offset"><code class="docutils literal notranslate"><span class="pre">KeplerSpacecraft.time_offset</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lkspacecraft.TESSSpacecraft"><code class="docutils literal notranslate"><span class="pre">TESSSpacecraft</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lkspacecraft.TESSSpacecraft.spacecraft_code"><code class="docutils literal notranslate"><span class="pre">TESSSpacecraft.spacecraft_code</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><code class="docutils literal notranslate"><span class="pre">TESSSpacecraft.spacecraft_code</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lkspacecraft.TESSSpacecraft.time_offset"><code class="docutils literal notranslate"><span class="pre">TESSSpacecraft.time_offset</span></code></a></li>
 </ul>
 </li>
 </ul>
