@@ -2,6 +2,22 @@
 import os  # noqa
 
 PACKAGEDIR = os.path.abspath(os.path.dirname(__file__))
+TEST_MODE = False
+
+
+def enable_test_mode():
+    global TEST_MODE
+    TEST_MODE = True
+
+
+def disable_test_mode():
+    global TEST_MODE
+    TEST_MODE = False
+
+
+def is_test_mode():
+    return TEST_MODE
+
 
 from importlib.metadata import PackageNotFoundError, version  # noqa
 
@@ -25,9 +41,8 @@ PACKAGEDIR = os.path.abspath(os.path.dirname(__file__))
 KERNELDIR = f"{PACKAGEDIR}/data/kernels/"
 
 # from .io import update_kernels
-from .utils import create_meta_kernel  # noqa
+from .utils import create_meta_test_kernel  # noqa
 
-# update_kernels() # This function should grab kernels and update the kernel directory
-create_meta_kernel()
+create_meta_test_kernel()
 
 from .spacecraft import KeplerSpacecraft, TESSSpacecraft  # noqa

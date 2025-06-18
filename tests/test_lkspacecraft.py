@@ -1,22 +1,53 @@
+import os
+
 import astropy.units as u
 import numpy as np
-import spiceypy
+import pytest
 from astropy.constants import c
 from astropy.time import Time
 
 import lkspacecraft
-from lkspacecraft.utils import KERNELS
 
 
-def test_init():
-    assert len(KERNELS) > 600
-    lkspacecraft.KeplerSpacecraft()
-    lkspacecraft.TESSSpacecraft()
-    nkernels = spiceypy.ktotal("ALL")
-    assert nkernels > 600
+def test_tess_truncated():
+    lkspacecraft.enable_test_mode()
+    ts = lkspacecraft.TESSSpacecraft()
+    assert ts.start_time > Time("2018-10-07 20:09:56.999998")
+    assert ts.end_time < Time("2018-11-20 11:33:59.999999")
+    time = Time("2018-11-01 13:00:00")
+    ra = 300
+    dec = 10
+    ts.get_spacecraft_velocity(time, observer="EARTH")
+    ts.get_spacecraft_position(time, observer="EARTH")
+    ts.get_spacecraft_light_travel_time(time)
+    ts.get_velocity_aberrated_positions(time, ra, dec)
+    ts.get_differential_velocity_aberrated_positions(time, ra, dec, ra0=301, dec0=11)
+    lkspacecraft.disable_test_mode()
 
 
-def test_kepler():
+def test_kepler_truncated():
+    lkspacecraft.enable_test_mode()
+    ks = lkspacecraft.spacecraft.KeplerSpacecraft()
+    assert ks.start_time > Time("2010-07-23 20:09:56.999998")
+    assert ks.end_time < Time("2010-07-27 11:33:59.999999")
+
+    time = Time("2010-07-25 00:00:00")
+    ra = 300
+    dec = 10
+    ks.get_spacecraft_velocity(time, observer="EARTH")
+    ks.get_spacecraft_position(time, observer="EARTH")
+    ks.get_spacecraft_light_travel_time(time)
+    ks.get_velocity_aberrated_positions(time, ra, dec)
+    ks.get_differential_velocity_aberrated_positions(time, ra, dec, ra0=301, dec0=11)
+    lkspacecraft.disable_test_mode()
+
+
+def test_kepler_full():
+    if os.getenv("GITHUB_ACTIONS") == "true":
+        pytest.skip(
+            "Skipping this test on GitHub Actions this downloads a database of stellar models."
+        )
+    lkspacecraft.disable_test_mode()
     ks = lkspacecraft.KeplerSpacecraft()
     assert ks.start_time > Time("2009-03-06 06:22:56.000025")
     assert ks.end_time < Time("2019-12-30 23:58:50.815000")
@@ -41,8 +72,9 @@ def test_kepler():
 
 
 def test_dva():
+    lkspacecraft.enable_test_mode()
     ts = lkspacecraft.TESSSpacecraft()
-    start = Time("2025-01-01T00:00:00.000", format="isot")
+    start = Time("2018-10-15T00:00:00.000", format="isot")
     t = Time(np.linspace(start.jd, start.jd + 28, 360), format="jd")
 
     dra, ddec = ts.get_differential_velocity_aberrated_positions(
@@ -79,12 +111,14 @@ def test_dva():
     )
     assert dra.shape == (len(t), 10, 11)
     assert dra.shape == (len(t), 10, 11)
+    lkspacecraft.disable_test_mode()
 
 
 def test_light_travel_time():
-    t = Time("2009-04-06 06:22:56.000025")
+    lkspacecraft.enable_test_mode()
+    t = Time("2010-07-25 00:00:00.0000")
     ks = lkspacecraft.KeplerSpacecraft()
     dist = ((np.sum(ks.get_spacecraft_position(t) ** 2) ** 0.5) * u.km).to(u.m)
     travel_time = ks.get_spacecraft_light_travel_time(t) * u.second
     assert np.isclose(((dist / travel_time) / c), u.Quantity(1))
-    return
+    lkspacecraft.disable_test_mode()

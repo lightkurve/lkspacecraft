@@ -11,6 +11,9 @@ from astropy.coordinates import SkyCoord
 from astropy.time import Time
 from astropy.utils.data import cache_contents
 
+from . import is_test_mode, log
+from .utils import create_meta_kernel
+
 
 class BadEphemeris(Exception):
     def __init__(self, message):
@@ -53,14 +56,33 @@ class Spacecraft(object):
         This method clears any previously loaded SPICE kernels, loads the kernels specified
         in the `Meta.txt` file, and determines the start and end times of the kernel data.
 
+        Parameters
+        ----------
+        test_mode: bool
+            Whether to use the test kernels. Test kernels are small, truncated kernels for each spacecraft valid over a short time range.
+            If you use this mode, lkspacecraft will not connect to the internet, download new kernels, or used cached kernels.
+            Use this mode if you want to test lkspacecraft as a dependency in your package.
+
         Raises
         ------
         Exception
             If there is an issue loading the SPICE kernels or retrieving the kernel time coverage.
         """
-        meta_kernel = cache_contents(pkgname="lkspacecraft")[
-            "https://github.com/lightkurve/lkspacecraft/src/lkspacecraft/data/Meta.txt"
-        ]
+        if is_test_mode():
+            log.warning(
+                "`lkspacecraft` is in test mode, and will not download new kernels. Will truncated kernels."
+            )
+            meta_kernel = cache_contents(pkgname="lkspacecraft")[
+                "https://github.com/lightkurve/lkspacecraft/src/lkspacecraft/data/TestMeta.txt"
+            ]
+        else:
+            log.info(
+                "`lkspacecraft` is not in test mode, and will download and use kernels if available."
+            )
+            create_meta_kernel()
+            meta_kernel = cache_contents(pkgname="lkspacecraft")[
+                "https://github.com/lightkurve/lkspacecraft/src/lkspacecraft/data/Meta.txt"
+            ]
         spiceypy.kclear()
         spiceypy.furnsh(meta_kernel)
         self.start_time, self.end_time = self._get_kernel_start_and_end_times()
@@ -104,7 +126,7 @@ class Spacecraft(object):
         return start_time, end_time
 
     def __repr__(self):
-        return "KeplerSpacecraft"
+        return "Spacecraft"
 
     def _process_time(self, time: Time):
         # convert to astropy.time.Time if needed
@@ -200,6 +222,7 @@ class Spacecraft(object):
         """
         zerod = np.ndim(ra) == 0
         ra, dec = np.atleast_1d(ra), np.atleast_1d(dec)
+        time = np.atleast_1d(time)
 
         # Compute the star vector (normalized direction vector for the target)
         star_vector = np.array(
@@ -234,6 +257,7 @@ class Spacecraft(object):
         """
         zerod = np.ndim(ra) == 0
         ra, dec = np.atleast_1d(ra), np.atleast_1d(dec)
+        time = np.atleast_1d(time)
 
         # Compute the star vector (normalized direction vector for the target)
         star_vector = np.array(
@@ -315,9 +339,13 @@ class Spacecraft(object):
         dec0: float
             The Dec of the target which the spacecraft is pointed towards.
         """
+        zerod = np.ndim(ra) == 0
+        ra, dec = np.atleast_1d(ra), np.atleast_1d(dec)
+        time = np.atleast_1d(time)
+
         nt = len(time) if np.ndim(time) == 1 else 1
         ra_ab, dec_ab = self.get_velocity_aberrated_positions(
-            time, np.atleast_1d(ra).ravel(), np.atleast_1d(dec).ravel()
+            time, ra.ravel(), dec.ravel()
         )
         ra_ab, dec_ab = np.atleast_2d(ra_ab), np.atleast_2d(dec_ab)
         ra0_ab, dec0_ab = self.get_velocity_aberrated_positions(time, ra0, dec0)
@@ -336,10 +364,10 @@ class Spacecraft(object):
             recentered_coords.ra.deg,
             recentered_coords.dec.deg,
         )
-        ra_ab_recentered.reshape((nt, *np.atleast_1d(ra).shape))
-        ra_ab_recentered = ra_ab_recentered.reshape((nt, *np.atleast_1d(ra).shape))
-        dec_ab_recentered = dec_ab_recentered.reshape((nt, *np.atleast_1d(ra).shape))
-        if np.ndim(ra) == 0:
+        ra_ab_recentered.reshape((nt, *ra.shape))
+        ra_ab_recentered = ra_ab_recentered.reshape((nt, *ra.shape))
+        dec_ab_recentered = dec_ab_recentered.reshape((nt, *ra.shape))
+        if zerod:
             return ra_ab_recentered[:, 0], dec_ab_recentered[:, 0]
         return ra_ab_recentered, dec_ab_recentered
 
@@ -366,6 +394,9 @@ class KeplerSpacecraft(Spacecraft):
 
     spacecraft_code = -227
     time_offset = 2454833
+
+    def __repr__(self):
+        return "KeplerSpacecraft"
 
     def get_barycentric_time_correction(
         self, time: Time, ra: Union[float, npt.NDArray], dec: Union[float, npt.NDArray]

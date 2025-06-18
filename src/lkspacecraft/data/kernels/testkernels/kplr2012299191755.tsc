@@ -1,0 +1,124 @@
+KPL/SCLK
+
+\beginlabel
+MISSION_NAME                 = "KEPLER"
+SPACECRAFT_NAME              = "KEPLER SPACECRAFT"
+SPACECRAFT_ID                = 227
+KERNEL_TYPE_ID               = SCLK
+PRODUCT_ID                   = "kplr2012299191755.tsc"
+PRODUCT_CREATION_TIME        = 2012-299T19:17:55
+PRODUCER_ID                  = "MOC/LASP"
+OBJECT                       = SPICE_KERNEL
+KERNEL_TYPE                  = CLOCK_COEFFICIENTS
+DESCRIPTION                  = "Kepler spacecraft Kernel"
+\endlabel
+
+
+Kepler Spacecraft SCLK File, Science Version
+===========================================================================
+ 
+     This file is a SPICE spacecraft clock (SCLK) kernel containing
+     information required for the Kepler spacecraft on-board clock to 
+	 UTC conversion.
+ 
+ 
+Production/History of this SCLK file
+--------------------------------------------------------
+ 
+     Appended new coefficients on 2012-299T19:17:55
+     Appended new coefficients on 2012-045T19:25:59
+     Appended new coefficients on 2011-168T20:28:33
+     Appended new coefficients on 2010-231T22:18:48
+     Appended new coefficients on 2009-337T16:43:59
+     Appended new coefficients on 2009-264T21:34:38
+     Appended new coefficients on 2009-212T18:35:56
+     Appended new coefficients on 2009-183T15:26:16
+     Appended new coefficients on 2009-162T19:02:39
+     Appended new coefficients on 2009-128T22:05:44
+     Appended new coefficients on 2009-091T01:00:44
+     Changed the sub-seconds field to a count of microseconds on 4/11/08. -- pc
+     The first sclk kernel file for Kepler was created on October 10th 2007.
+
+Usage
+--------------------------------------------------------
+ 
+     This file must be loaded into the user's program by a call to the
+     FURNSH subroutine
+ 
+          CALL FURNSH( 'this_file_name' )
+ 
+     in order to use the SPICELIB SCLK family of subroutines to convert
+     Kepler spacecraft on-board clock to ET and vice versa.
+ 
+ 
+SCLK Format
+--------------------------------------------------------
+
+     The on-board clock, the conversion for which is provided by this
+     SCLK file, consists of two fields:
+
+     SSSSSSSSSS.MMMMMM
+
+     where:
+
+     SSSSSSSSSS -- count of on-board seconds
+
+     MMMMMM     -- count of microseconds
+
+
+References
+--------------------------------------------------------
+ 
+         1.   SCLK Required Reading Document
+ 
+  
+Kernel DATA
+--------------------------------------------------------
+
+\begindata
+
+
+SCLK_KERNEL_ID            = ( @2012-299T19:17:55 )
+
+SCLK_DATA_TYPE_227        = ( 1 )
+SCLK01_TIME_SYSTEM_227    = ( 1 )
+SCLK01_N_FIELDS_227       = ( 2 )
+SCLK01_MODULI_227         = ( 4294967296 1000000 )
+SCLK01_OFFSETS_227        = ( 0 0 )
+SCLK01_OUTPUT_DELIM_227   = ( 1 )
+
+SCLK_PARTITION_START_227  = ( 0.0000000000000E+00 )
+
+SCLK_PARTITION_END_227    = ( 4.9085352651836E+15 ) 
+
+SCLK01_COEFFICIENTS_227   = (
+	0.0000000000000E+14     0.0000000000000E+08     1.0000000000000E+00
+	2.8956966618550E+14     2.8956966618600E+08     0.9903809251650E+00
+	2.8958070517540E+14     2.8958059899103E+08     1.0000000000000E+00
+        2.9198897237003E+14     2.9198886618566E+08     9.9996526027405E-01
+        2.9198997240477E+14     2.9198986618566E+08     9.9999998558029E-01
+        2.9535857245300E+14     2.9535846618531E+08     9.9997369585432E-01
+        2.9535957247930E+14     2.9535946618531E+08     9.9999997777805E-01
+        2.9812337254001E+14     2.9812326618460E+08     9.9995250378891E-01
+        2.9812437258751E+14     2.9812426618460E+08     9.9999996060638E-01
+        2.9993777265837E+14     2.9993766618403E+08     9.9995507283745E-01
+        2.9993877270330E+14     2.9993866618403E+08     9.9999993586554E-01
+        3.0240017286039E+14     3.0240006618326E+08     9.9995126864097E-01
+        3.0240117290912E+14     3.0240106618326E+08     9.9999991610044E-01
+        3.0691457328691E+14     3.0691446618238E+08     9.9994955723126E-01
+        3.0691557333736E+14     3.0691546618238E+08     9.9999990494472E-01
+        3.1331537394652E+14     3.1331526618320E+08     9.9995366693263E-01
+        3.1331637399285E+14     3.1331626618320E+08     9.9999989772060E-01
+        3.3560657627230E+14     3.3560646618282E+08     9.9996863675554E-01
+        3.3560757630367E+14     3.3560746618282E+08     9.9999989631817E-01
+        3.6169937901056E+14     3.6169926618446E+08     1.0000178715766E+00
+        3.6170037899269E+14     3.6170026618446E+08     9.9999989764347E-01
+        3.8261538113414E+14     3.8261526618513E+08     1.0000327130051E+00
+        3.8261638110143E+14     3.8261626618513E+08     9.9999989921233E-01
+        4.0453938430833E+14     4.0453926718246E+08     9.9996540364256E-01
+        4.0454038434292E+14     4.0454026718246E+08     9.9999989763886E-01)
+
+
+    
+\begintext
+

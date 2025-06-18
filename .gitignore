@@ -1,6 +1,11 @@
 sandbox/
 scratch/
-src/lkspacecraft/data
+src/lkspacecraft/data/kernels/generic
+src/lkspacecraft/data/kernels/Kepler
+src/lkspacecraft/data/kernels/K2
+src/lkspacecraft/data/kernels/TESS
+src/lkspacecraft/data/Meta.txt
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

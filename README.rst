@@ -60,7 +60,7 @@ installing via poetry
    poetry install .
 
 
-This package will download and store SPICE kernels into a directory in your home area. This is approximately 1Gb of data at time of writing. This means that if you install this package in multiple environments, the SPICE kernels will not be redownloaded and will be shared between multiple installs. 
+This package will download and store SPICE kernels into a directory in your home area when you use any of the objects. This is approximately 1Gb of data at time of writing. This means that if you install this package in multiple environments, the SPICE kernels will not be redownloaded and will be shared between multiple installs. 
 
 To uninstall this package from your machine entirely you should clear the cache of SPICE kernel files using 
 
@@ -70,6 +70,8 @@ To uninstall this package from your machine entirely you should clear the cache 
    clear_download_cache(pkgname='lkspacecraft')
 
 or by deleting the `.lkspacecraft/cache/` directory in your home area. You can then uninstall with pip, or if you cloned the repository you can delete the directory.
+
+This package now installs with a lightweight set of truncated kernels which can be used to test the functionality, but cover a very limited time range and set of bodies. These files are available in `src/data/kernels/testkernels`. 
 
 Usage
 -----
@@ -169,7 +171,7 @@ TESS kernels can be obtained from MAST:
 https://archive.stsci.edu/missions/tess/engineering/
 https://archive.stsci.edu/missions/tess/models/
 
-When you first load `lkspacecraft` into Python all the kernels will be downloaded for you. This will take approximately 5 minutes, depending on your internet connection. Once this has been done, the kernels will be cached. If there are new TESS kernels available `lkspacecraft` will retrieve them for you and update the cache. 
+When you first initialize an `lkspacecraft.Spacecraft` object in Python all the kernels will be downloaded for you, and ``lkspacecraft`` will check if there are new kernels available. This will take approximately 5 minutes if you have no kernels, depending on your internet connection. Once this has been done, the kernels will be cached. If there are new TESS kernels available `lkspacecraft` will retrieve them for you and update the cache. 
 
 The total file volume for the kernels is ~1GB. These cached files are stored using `astropy`'s cache. If you want to clear the cache you can do either of the following;
 
@@ -183,7 +185,31 @@ The total file volume for the kernels is ~1GB. These cached files are stored usi
    from astropy.utils.data import clear_download_cache
    clear_download_cache(pkgname='lkspacecraft')
 
+Because the kernels need to be checked, every time you initialize a ``Spacecraft``, like below, object there will be a slight delay, and ``lkspacecraft`` will connect to the internet to check for new kernels. 
 
+.. code-block:: python
+
+   ks = KeplerSpacecraft()
+
+Testing ``lkspacecraft``
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you need to run tests for ``lkspacecraft`` or run tests of your own package where ``lkspacecraft`` is a dependency, you will not want to download the kernels as this will slow down your continuous integration. ``lkspacecraft`` has a "test mode" which will use small, truncated SPICE kernels that are valid for specific dates:
+
+- For Kepler, the test kernels cover approximately one day around July 25th 2010
+- For TESS, the test kernels cover Sector 4 (10/18/18 - 11/15/18) 
+
+When you load ``lkspacecraft`` test mode will always be turned off. You can enable or disable test mode using
+
+.. code-block:: python
+
+   import lkspacecraft
+   lkspacecraft.enable_test_mode()
+   lkspacecraft.disable_test_mode()
+
+If you are designing continuous integration and have lkspacecraft as a dependency, make sure to include "lkspacecraft.enable_test_mode()" before the test function. 
+
+Note that using test mode is less accurate, because the truncated files are small and interpolated. This should test functionality, but be careful when using test mode to test accuracy.
 
 Extending ``lkspacecraft``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -305,6 +331,8 @@ details.
 
 Changelog:
 ==========
+v1.2.0
+   - Added in testing capabilities using truncated SPICE kernels
 v1.1.0
    - Bug fix @jorgemarpa for light travel time
 v1.0.5
