@@ -11,7 +11,6 @@ spiceypy = "^6.0.0"
 matplotlib = "^3.9.2"
 astropy = ">=5.0.0"
 pandas = "^2.2.3"
-appdirs = "^1.4.4"
 
 [tool.poetry.group.dev]
 optional = true
@@ -34,6 +33,7 @@ sphinx-autobuild = "^2024.10.3"
 ghp-import = "^2.1.0"
 lxml = "^5.3.0"
 flake8 = "^7.1.1"
+pandoc = "^2.4"
 
 [build-system]
 requires = ["poetry-core"]
