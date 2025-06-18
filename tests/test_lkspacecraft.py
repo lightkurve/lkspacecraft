@@ -17,11 +17,21 @@ def test_tess_truncated():
     time = Time("2018-11-01 13:00:00")
     ra = 300
     dec = 10
-    ts.get_spacecraft_velocity(time, observer="EARTH")
-    ts.get_spacecraft_position(time, observer="EARTH")
-    ts.get_spacecraft_light_travel_time(time)
-    ts.get_velocity_aberrated_positions(time, ra, dec)
-    ts.get_differential_velocity_aberrated_positions(time, ra, dec, ra0=301, dec0=11)
+    velocity = ts.get_spacecraft_velocity(time, observer="EARTH")
+    assert velocity.shape == (1, 3)
+    position = ts.get_spacecraft_position(time, observer="EARTH")
+    assert position.shape == (1, 3)
+    lt = ts.get_spacecraft_light_travel_time(time)
+    assert lt.shape == (1,)
+    assert np.isclose(lt, 500, atol=50)
+    ra_result, dec_result = ts.get_velocity_aberrated_positions(time, ra, dec)
+    assert ra_result.shape == (1,)
+    assert dec_result.shape == (1,)
+    ra_result, dec_result = ts.get_differential_velocity_aberrated_positions(
+        time, ra, dec, ra0=301, dec0=11
+    )
+    assert ra_result.shape == (1,)
+    assert dec_result.shape == (1,)
     lkspacecraft.disable_test_mode()
 
 
@@ -34,11 +44,21 @@ def test_kepler_truncated():
     time = Time("2010-07-25 00:00:00")
     ra = 300
     dec = 10
-    ks.get_spacecraft_velocity(time, observer="EARTH")
-    ks.get_spacecraft_position(time, observer="EARTH")
-    ks.get_spacecraft_light_travel_time(time)
-    ks.get_velocity_aberrated_positions(time, ra, dec)
-    ks.get_differential_velocity_aberrated_positions(time, ra, dec, ra0=301, dec0=11)
+    velocity = ks.get_spacecraft_velocity(time, observer="EARTH")
+    assert velocity.shape == (1, 3)
+    position = ks.get_spacecraft_position(time, observer="EARTH")
+    assert position.shape == (1, 3)
+    lt = ks.get_spacecraft_light_travel_time(time)
+    assert lt.shape == (1,)
+    assert np.isclose(lt, 500, atol=50)
+    ra_result, dec_result = ks.get_velocity_aberrated_positions(time, ra, dec)
+    assert ra_result.shape == (1,)
+    assert dec_result.shape == (1,)
+    ra_result, dec_result = ks.get_differential_velocity_aberrated_positions(
+        time, ra, dec, ra0=301, dec0=11
+    )
+    assert ra_result.shape == (1,)
+    assert dec_result.shape == (1,)
     lkspacecraft.disable_test_mode()
 
 
