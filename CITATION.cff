@@ -1,14 +1,60 @@
-@article{Hedges_2025,
-doi = {10.3847/2515-5172/adef3a},
-url = {https://dx.doi.org/10.3847/2515-5172/adef3a},
-year = {2025},
-month = {jul},
-publisher = {The American Astronomical Society},
-volume = {9},
-number = {7},
-pages = {186},
-author = {Hedges, Christina and Martínez-Palomera, Jorge and Tuson, Amy and Pritchard, Tyler and Hounsell, Rebekah and Schanche, Nicole and Kostov, Veselin and Giles, Daniel},
-title = {lkspacecraft: A Tool for Obtaining Orbital Properties of the Kepler and TESS Spacecraft},
-journal = {Research Notes of the AAS},
-abstract = {NASA’s Kepler and TESS missions have produced image data and time-series of millions of stars, and unlocked valuable astrophysical inference. These missions both provide precise, accurate time-series. However, because of the orbital properties of the spacecraft, the data from these missions are impacted by various relativistic effects which cause position and timing aberrations. These aberrations can be calculated using the precise ephemerides of the spacecraft, which are provided by the mission via SPICE kernels. However, SPICE kernels can be difficult for users to work with, requiring a knowledge of the workings of the SPICE package, and the location and formats of the various kernels needed to build spacecraft ephemeris. lkspacecraft is a new Python package that utilizes spiceypy to provide users with a simple interface to obtain the key properties needed to correct the relativistic effects that impact Kepler, K2 and TESS data.}
-}
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: >-
+  lkspacecraft: A Tool for Obtaining Orbital Properties of
+  the Kepler and TESS Spacecraft
+message: 'If you use this software, please cite the following paper:'
+type: software
+authors:
+  - family-names: Hedges
+    given-names: Christina
+  - family-names: Martínez-Palomera
+    given-names: Jorge
+  - family-names: Tuson
+    given-names: Amy
+  - family-names: Pritchard
+    given-names: Tyler
+  - family-names: Hounsell
+    given-names: Rebekah
+  - family-names: Schanche
+    given-names: Nicole
+  - family-names: Kostov
+    given-names: Veselin
+  - family-names: Giles
+    given-names: Daniel
+url: 'https://dx.doi.org/10.3847/2515-5172/adef3a'
+version: 1.0.0
+date-released: '2025-07-01'
+doi: 10.3847/2515-5172/adef3a
+preferred-citation:
+  type: article
+  authors:
+    - family-names: Hedges
+      given-names: Christina
+    - family-names: Martínez-Palomera
+      given-names: Jorge
+    - family-names: Tuson
+      given-names: Amy
+    - family-names: Pritchard
+      given-names: Tyler
+    - family-names: Hounsell
+      given-names: Rebekah
+    - family-names: Schanche
+      given-names: Nicole
+    - family-names: Kostov
+      given-names: Veselin
+    - family-names: Giles
+      given-names: Daniel
+  title: >-
+    lkspacecraft: A Tool for Obtaining Orbital Properties of the Kepler and TESS
+    Spacecraft
+  journal: Research Notes of the AAS
+  volume: 9
+  issue: 7
+  pages: 186
+  year: 2025
+  month: 7
+  doi: 10.3847/2515-5172/adef3a
+  url: 'https://dx.doi.org/10.3847/2515-5172/adef3a'
