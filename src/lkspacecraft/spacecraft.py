@@ -208,13 +208,13 @@ class Spacecraft(object):
     ) -> npt.NDArray:
         """Returns the barycentric time correction in days for observations of a particular target specified by RA and Dec.
 
-        Note that `time` here must be time in spacecraft time, in UTC format.
+        Note that `time` here must be the time of the spacecraft clock.
         This means that for SPOC data this should be the time without the SPOC barycentric correction applied.
 
         Parameters:
         -----------
         time: astropy.time.Time
-            Time array at which to estimate position. Time must be in UTC.
+            Time array at which to estimate position. Time must be at the spacecraft.
         ra: float, np.ndarray
             The right ascention of the target in degrees
         dec: float, np.ndarray
@@ -403,7 +403,7 @@ class KeplerSpacecraft(Spacecraft):
     ) -> npt.NDArray:
         """Returns the barycentric time correction in days for observations of a particular target specified by RA and Dec.
 
-        Note that `time` here must be time in spacecraft time, in UTC format.
+        Note that `time` here must be time in spacecraft clock time.
         This means that for SPOC data this should be the time without the SPOC barycentric correction applied.
 
         Note this also corrects the timing error in the Kepler TIME column, see https://archive.stsci.edu/kepler/timing_error.html
@@ -419,6 +419,10 @@ class KeplerSpacecraft(Spacecraft):
         """
         time = self._process_time(time)
         tcorr = super().get_barycentric_time_correction(time, ra, dec)
+        # see data release notes in https://archive.stsci.edu/missions/kepler/docs/drn/release_notes19/DataRelease_19_20130204.pdf
+        # section 3.4
+        # For Kepler the TIME column was erroneously in UTC not TDB as reported. As such it did not account for leap seconds
+        # This corrects the error in the original products
         tcorr += 66.184
         k = time.jd > Time("2012-06-30 23:59:60", format="iso").jd
         tcorr[k] += 1
