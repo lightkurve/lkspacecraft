@@ -18,10 +18,3 @@ black:
 # Order the imports using `isort`
 isort:
 	poetry run isort src tests
-
-# Serve docs
-serve:
-	poetry run mkdocs serve
-
-deploy:
-	poetry run mkdocs gh-deploy --force
