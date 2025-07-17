@@ -1,0 +1,729 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>lkspacecraft &#8212; lkspacecraft</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=fd3f3429" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=8d563738"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="Quickstart.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+    <meta name="docbuild:last-update" content="17 Jul 2025"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">lkspacecraft</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="Quickstart.html">
+    <no title>
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="apidoc.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="GetInvolved.html">
+    Contributing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="HowtoCite.html">
+    Citing
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="Contact.html">
+    Contact
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/lightkurve/lkspacecraft" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="Quickstart.html">
+    <no title>
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="apidoc.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="GetInvolved.html">
+    Contributing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="HowtoCite.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="Contact.html">
+    Contact
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/lightkurve/lkspacecraft" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="lkspacecraft">
+<h1>lkspacecraft<a class="headerlink" href="#lkspacecraft" title="Link to this heading">#</a></h1>
+<p>This package provides a way to access the orbital parameters for the
+Kepler and TESS spacecrafts. This will enable you to access</p>
+<ol class="arabic simple">
+<li><p>Spacecraft position at any given time with respect to the solar
+system barycenter, the earth, or the moon</p></li>
+<li><p>Spacecraft velocity at any given time with respect to the solar
+system barycenter, the earth, or the moon</p></li>
+<li><p>The baycentric time correction for any target RA/Dec at any time</p></li>
+<li><p>The velocity aberration for any target RA/Dec at any time</p></li>
+</ol>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/lightkurve/lkspacecraft/main/docs/images/tess_wrt_earth.png"><img alt="TESS position with respect to the earth." src="https://raw.githubusercontent.com/lightkurve/lkspacecraft/main/docs/images/tess_wrt_earth.png" style="width: 400px;" />
+</a>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading">#</a></h2>
+<p>This package relies heavily on
+<a class="reference external" href="https://github.com/AndrewAnnex/SpiceyPy">spiceypy</a> which wraps
+<a class="reference external" href="https://naif.jpl.nasa.gov/naif/toolkit.html">SPICE</a>. It also relies
+on <a class="reference external" href="https://www.astropy.org/">astropy</a>.</p>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h2>
+<p>You can install this package with <code class="docutils literal notranslate"><span class="pre">pip</span></code> using</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install lkspacecraft --upgrade</span>
+</pre></div>
+</div>
+<p>You can also install this package by cloning the repo and then
+installing via poetry</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone https://github.com/lightkurve/lkspacecraft.git</span>
+<span class="go">cd lkspacecraft</span>
+<span class="go">pip install --upgrade poetry</span>
+<span class="go">poetry install .</span>
+</pre></div>
+</div>
+<p>This package will download and store SPICE kernels into a directory in your home area when you use any of the objects. This is approximately 1Gb of data at time of writing. This means that if you install this package in multiple environments, the SPICE kernels will not be redownloaded and will be shared between multiple installs.</p>
+<p>To uninstall this package from your machine entirely you should clear the cache of SPICE kernel files using</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">clear_download_cache</span>
+<span class="n">clear_download_cache</span><span class="p">(</span><span class="n">pkgname</span><span class="o">=</span><span class="s1">&#39;lkspacecraft&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>or by deleting the <code class="xref py py-obj docutils literal notranslate"><span class="pre">lkspacecraft/cache/</span></code> directory in your home area. You can then uninstall with pip, or if you cloned the repository you can delete the directory.</p>
+<p>This package now installs with a lightweight set of truncated kernels which can be used to test the functionality, but cover a very limited time range and set of bodies. These files are available in <code class="xref py py-obj docutils literal notranslate"><span class="pre">src/data/kernels/testkernels</span></code>.</p>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">lkspacecraft</span></code> provides <code class="docutils literal notranslate"><span class="pre">Spacecraft</span></code> object which will enable you to
+access the orbital parameters of either the Kepler or TESS spacecraft.
+<code class="docutils literal notranslate"><span class="pre">lkspacecraft</span></code> will obtain the relevant SPICE kernels to calculate the
+spacecraft position and velocity. To get the orbital elements you will
+need to pick a time that is within the relevant window of those SPICE
+kernels (i.e. when the mission was operational).</p>
+<p>You can find the start and end times of the kernels using the following</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lkspacecraft</span><span class="w"> </span><span class="kn">import</span> <span class="n">KeplerSpacecraft</span>
+
+<span class="n">ks</span> <span class="o">=</span> <span class="n">KeplerSpacecraft</span><span class="p">()</span>
+<span class="n">ks</span><span class="o">.</span><span class="n">start_time</span><span class="p">,</span> <span class="n">ks</span><span class="o">.</span><span class="n">end_time</span>
+</pre></div>
+</div>
+<p>All times in <code class="docutils literal notranslate"><span class="pre">lkspacecraft</span></code> use <code class="docutils literal notranslate"><span class="pre">astropy.time.Time</span></code> objects. Using the
+<code class="docutils literal notranslate"><span class="pre">get_spacecraft_position</span></code> or <code class="docutils literal notranslate"><span class="pre">get_spacecraft_velocity</span></code> functions
+will provide you with the position or velocity in cartesian coordinates,
+for example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lkspacecraft</span><span class="w"> </span><span class="kn">import</span> <span class="n">KeplerSpacecraft</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.time</span><span class="w"> </span><span class="kn">import</span> <span class="n">Time</span>
+
+<span class="n">ks</span> <span class="o">=</span> <span class="n">KeplerSpacecraft</span><span class="p">()</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="s2">&quot;2009-04-06 06:22:56.000025&quot;</span><span class="p">)</span>
+<span class="n">ks</span><span class="o">.</span><span class="n">get_spacecraft_velocity</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>will result in</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span>  <span class="mf">6.94188023</span><span class="p">,</span> <span class="o">-</span><span class="mf">26.24714425</span><span class="p">,</span> <span class="o">-</span><span class="mf">11.16828662</span><span class="p">]])</span>
+</pre></div>
+</div>
+<p>This will give the velocity with respect to the solar system barycenter
+by default, but you can specify the earth or moon using</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lkspacecraft</span><span class="w"> </span><span class="kn">import</span> <span class="n">KeplerSpacecraft</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.time</span><span class="w"> </span><span class="kn">import</span> <span class="n">Time</span>
+
+<span class="n">ks</span> <span class="o">=</span> <span class="n">KeplerSpacecraft</span><span class="p">()</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="s2">&quot;2009-04-06 06:22:56.000025&quot;</span><span class="p">)</span>
+<span class="n">ks</span><span class="o">.</span><span class="n">get_spacecraft_velocity</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="s2">&quot;earth&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You are able to calculate the light arrival time of observations of a
+source at a given RA/Dec using <code class="docutils literal notranslate"><span class="pre">lkspacecraft</span></code>’s
+<code class="docutils literal notranslate"><span class="pre">get_barycentric_time_correction</span></code> function. This will give you the
+time delay in seconds from spacecraft time to time at the barycenter.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lkspacecraft</span><span class="w"> </span><span class="kn">import</span> <span class="n">KeplerSpacecraft</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.time</span><span class="w"> </span><span class="kn">import</span> <span class="n">Time</span>
+
+<span class="n">ks</span> <span class="o">=</span> <span class="n">KeplerSpacecraft</span><span class="p">()</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="s2">&quot;2009-04-06 06:22:56.000025&quot;</span><span class="p">)</span>
+<span class="n">ks</span><span class="o">.</span><span class="n">get_barycentric_time_correction</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">ra</span><span class="o">=</span><span class="mf">290.666</span><span class="p">,</span> <span class="n">dec</span><span class="o">=</span><span class="mf">44.5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally you can calculate velocity aberration using</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lkspacecraft</span><span class="w"> </span><span class="kn">import</span> <span class="n">KeplerSpacecraft</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.time</span><span class="w"> </span><span class="kn">import</span> <span class="n">Time</span>
+
+<span class="n">ks</span> <span class="o">=</span> <span class="n">KeplerSpacecraft</span><span class="p">()</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="s2">&quot;2009-04-06 06:22:56.000025&quot;</span><span class="p">)</span>
+<span class="n">ks</span><span class="o">.</span><span class="n">get_velocity_aberrated_positions</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">ra</span><span class="o">=</span><span class="mf">290.666</span><span class="p">,</span> <span class="n">dec</span><span class="o">=</span><span class="mf">44.5</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="units">
+<h3>Units<a class="headerlink" href="#units" title="Link to this heading">#</a></h3>
+<p>In <code class="docutils literal notranslate"><span class="pre">lkspacecraft</span></code>, just as in <code class="docutils literal notranslate"><span class="pre">SPICE</span></code>, units are <code class="docutils literal notranslate"><span class="pre">km</span></code> and <code class="docutils literal notranslate"><span class="pre">s</span></code>, unless
+otherwise specified.</p>
+</section>
+</section>
+<section id="kernels">
+<h2>Kernels<a class="headerlink" href="#kernels" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">lkspacecraft</span></code> will obtain the SPICE kernels for Kepler and TESS for you
+store them. Kernels can be found here:</p>
+<p>The generic kernels can be obtained from NAIF generic kernels:
+<a class="reference external" href="https://naif.jpl.nasa.gov/pub/naif/generic_kernels/">https://naif.jpl.nasa.gov/pub/naif/generic_kernels/</a>
+The Kepler kernels can be obtained from MAST:
+<a class="reference external" href="https://archive.stsci.edu/missions/kepler/spice/">https://archive.stsci.edu/missions/kepler/spice/</a>
+The K2 kernels can be obtained from MAST:
+<a class="reference external" href="https://archive.stsci.edu/missions/k2/spice/">https://archive.stsci.edu/missions/k2/spice/</a> The
+TESS kernels can be obtained from MAST:
+<a class="reference external" href="https://archive.stsci.edu/missions/tess/engineering/">https://archive.stsci.edu/missions/tess/engineering/</a>
+<a class="reference external" href="https://archive.stsci.edu/missions/tess/models/">https://archive.stsci.edu/missions/tess/models/</a></p>
+<p>When you first initialize an <code class="xref py py-obj docutils literal notranslate"><span class="pre">lkspacecraft.Spacecraft</span></code> object in Python all the kernels will be downloaded for you, and <code class="docutils literal notranslate"><span class="pre">lkspacecraft</span></code> will check if there are new kernels available. This will take approximately 5 minutes if you have no kernels, depending on your internet connection. Once this has been done, the kernels will be cached. If there are new TESS kernels available <code class="xref py py-obj docutils literal notranslate"><span class="pre">lkspacecraft</span></code> will retrieve them for you and update the cache.</p>
+<p>The total file volume for the kernels is ~1GB. These cached files are stored using <code class="xref py py-obj docutils literal notranslate"><span class="pre">astropy</span></code>’s cache. If you want to clear the cache you can do either of the following;</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lkspacecraft.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">clear_download_cache</span>
+<span class="n">clear_download_cache</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">astropy.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">clear_download_cache</span>
+<span class="n">clear_download_cache</span><span class="p">(</span><span class="n">pkgname</span><span class="o">=</span><span class="s1">&#39;lkspacecraft&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Because the kernels need to be checked, every time you initialize a <code class="docutils literal notranslate"><span class="pre">Spacecraft</span></code>, like below, object there will be a slight delay, and <code class="docutils literal notranslate"><span class="pre">lkspacecraft</span></code> will connect to the internet to check for new kernels.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ks</span> <span class="o">=</span> <span class="n">KeplerSpacecraft</span><span class="p">()</span>
+</pre></div>
+</div>
+<section id="testing-lkspacecraft">
+<h3>Testing <code class="docutils literal notranslate"><span class="pre">lkspacecraft</span></code><a class="headerlink" href="#testing-lkspacecraft" title="Link to this heading">#</a></h3>
+<p>If you need to run tests for <code class="docutils literal notranslate"><span class="pre">lkspacecraft</span></code> or run tests of your own package where <code class="docutils literal notranslate"><span class="pre">lkspacecraft</span></code> is a dependency, you will not want to download the kernels as this will slow down your continuous integration. <code class="docutils literal notranslate"><span class="pre">lkspacecraft</span></code> has a “test mode” which will use small, truncated SPICE kernels that are valid for specific dates:</p>
+<ul class="simple">
+<li><p>For Kepler, the test kernels cover approximately one day around July 25th 2010</p></li>
+<li><p>For TESS, the test kernels cover Sector 4 (10/18/18 - 11/15/18)</p></li>
+</ul>
+<p>When you load <code class="docutils literal notranslate"><span class="pre">lkspacecraft</span></code> test mode will always be turned off. You can enable or disable test mode using</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">lkspacecraft</span>
+<span class="n">lkspacecraft</span><span class="o">.</span><span class="n">enable_test_mode</span><span class="p">()</span>
+<span class="n">lkspacecraft</span><span class="o">.</span><span class="n">disable_test_mode</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If you are designing continuous integration and have lkspacecraft as a dependency, make sure to include “lkspacecraft.enable_test_mode()” before the test function.</p>
+<p>Note that using test mode is less accurate, because the truncated files are small and interpolated. This should test functionality, but be careful when using test mode to test accuracy.</p>
+</section>
+<section id="extending-lkspacecraft">
+<h3>Extending <code class="docutils literal notranslate"><span class="pre">lkspacecraft</span></code><a class="headerlink" href="#extending-lkspacecraft" title="Link to this heading">#</a></h3>
+<p>If you wanted to extend <code class="docutils literal notranslate"><span class="pre">lkspacecraft</span></code> to include more spacecraft you would
+need to include more kernels in the kernel directory and ensure they are
+added to the meta kernel. You can then create a new class in the
+<code class="docutils literal notranslate"><span class="pre">spacecraft.py</span></code> module with the correct NAIF code.</p>
+</section>
+</section>
+<section id="caveats">
+<h2>Caveats<a class="headerlink" href="#caveats" title="Link to this heading">#</a></h2>
+<section id="velocity-aberration-vs-differential-velocity-aberration">
+<h3>Velocity Aberration vs. Differential Velocity Aberration<a class="headerlink" href="#velocity-aberration-vs-differential-velocity-aberration" title="Link to this heading">#</a></h3>
+<p>This package will provide you <strong>velocity aberration</strong>. However, each of
+these spacecrafts repoint during observations to account for the bulk
+offset of velocity aberration. If you are interested in where stars will
+fall on pixels, you should consider calculating the <strong>differential
+velocity aberration</strong>.</p>
+</section>
+<section id="spacecraft-time">
+<h3>Spacecraft Time<a class="headerlink" href="#spacecraft-time" title="Link to this heading">#</a></h3>
+<p>This package assumes you will provide time as the time <strong>at the
+spacecraft</strong>. For SPOC products, this is the time in the <code class="docutils literal notranslate"><span class="pre">'TIME'</span></code>
+column of any fits file, with the time corrections from <code class="docutils literal notranslate"><span class="pre">TIME_CORR</span></code>
+subtracted. i.e.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">hdulist</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;TIME&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">tcorr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">hdulist</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;TIMECORR&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="c1"># Spacecraft time:</span>
+<span class="n">t</span> <span class="o">-=</span> <span class="n">tcorr</span>
+</pre></div>
+</div>
+<p>If you are trying to accurately calculate time corrections, it is
+important you use the spacecraft time in all functions.</p>
+<section id="changelog">
+<h4>Changelog:<a class="headerlink" href="#changelog" title="Link to this heading">#</a></h4>
+<dl class="simple">
+<dt>v1.2.0</dt><dd><ul class="simple">
+<li><p>Added in testing capabilities using truncated SPICE kernels</p></li>
+</ul>
+</dd>
+<dt>v1.1.0</dt><dd><ul class="simple">
+<li><p>Bug fix &#64;jorgemarpa for light travel time</p></li>
+</ul>
+</dd>
+<dt>v1.0.5</dt><dd><ul class="simple">
+<li><p>Added a function for calculating DVA</p></li>
+</ul>
+</dd>
+<dt>v1.0.4</dt><dd><ul class="simple">
+<li><p>Made Python version &gt;=3.9 compliant</p></li>
+</ul>
+</dd>
+<dt>v1.0.3</dt><dd><ul class="simple">
+<li><p>Added ability to calculate velocity aberration on an array of RA/Decs.</p></li>
+<li><p>Added ability to calculate barycentric time correction on an array of RA/Decs.</p></li>
+</ul>
+</dd>
+<dt>v1.0.0</dt><dd><ul class="simple">
+<li><p>First version</p></li>
+</ul>
+</dd>
+</dl>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="right-next"
+       href="Quickstart.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#units">Units</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kernels">Kernels</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-lkspacecraft">Testing <code class="docutils literal notranslate"><span class="pre">lkspacecraft</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extending-lkspacecraft">Extending <code class="docutils literal notranslate"><span class="pre">lkspacecraft</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caveats">Caveats</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#velocity-aberration-vs-differential-velocity-aberration">Velocity Aberration vs. Differential Velocity Aberration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spacecraft-time">Spacecraft Time</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#changelog">Changelog:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, TESS Science Support Center.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,929 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lkspacecraft.spacecraft &#8212; lkspacecraft</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/lkspacecraft/spacecraft';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+    <meta name="docbuild:last-update" content="17 Jul 2025"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">lkspacecraft</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Quickstart.html">
+    <no title>
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../apidoc.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../GetInvolved.html">
+    Contributing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../HowtoCite.html">
+    Citing
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../Contact.html">
+    Contact
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/lightkurve/lkspacecraft" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Quickstart.html">
+    <no title>
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials/index.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../apidoc.html">
+    API
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../GetInvolved.html">
+    Contributing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../HowtoCite.html">
+    Citing
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../Contact.html">
+    Contact
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/lightkurve/lkspacecraft" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">lkspacecraft.spacecraft</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for lkspacecraft.spacecraft</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Classes for working with the orbits of spacecraft&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Union</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">astropy.units</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">u</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy.typing</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">npt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">spiceypy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">c</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.coordinates</span><span class="w"> </span><span class="kn">import</span> <span class="n">SkyCoord</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.time</span><span class="w"> </span><span class="kn">import</span> <span class="n">Time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">astropy.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">cache_contents</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">is_test_mode</span><span class="p">,</span> <span class="n">log</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_meta_kernel</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">BadEphemeris</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Spacecraft</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A base class for handling spacecraft ephemeris data and calculations.</span>
+
+<span class="sd">    This class provides methods to retrieve spacecraft position, velocity, light travel time,</span>
+<span class="sd">    and related calculations using SPICE kernels. It supports transformations between</span>
+<span class="sd">    time formats and computes barycentric time corrections and velocity aberration effects.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    start_time : astropy.time.Time</span>
+<span class="sd">        The start time of the loaded SPICE kernel data.</span>
+<span class="sd">    end_time : astropy.time.Time</span>
+<span class="sd">        The end time of the loaded SPICE kernel data.</span>
+
+<span class="sd">    Methods</span>
+<span class="sd">    -------</span>
+<span class="sd">    get_spacecraft_position(time, observer=&quot;SOLAR SYSTEM BARYCENTER&quot;)</span>
+<span class="sd">        Returns the position vector (x, y, z) in kilometers relative to the specified observer.</span>
+<span class="sd">    get_spacecraft_velocity(time, observer=&quot;SOLAR SYSTEM BARYCENTER&quot;)</span>
+<span class="sd">        Returns the velocity vector (vx, vy, vz) in kilometers per second relative to the observer.</span>
+<span class="sd">    get_spacecraft_light_travel_time(time, observer=&quot;SOLAR SYSTEM BARYCENTER&quot;)</span>
+<span class="sd">        Computes the one-way light travel time to the observer in seconds.</span>
+<span class="sd">    get_barycentric_time_correction(time, ra, dec)</span>
+<span class="sd">        Calculates the barycentric time correction for a target specified by RA and Dec.</span>
+<span class="sd">    get_velocity_aberrated_positions(time, ra, dec)</span>
+<span class="sd">        Computes the RA and Dec of a target after applying velocity aberration.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes the Spacecraft object and loads SPICE kernels.</span>
+
+<span class="sd">        This method clears any previously loaded SPICE kernels, loads the kernels specified</span>
+<span class="sd">        in the `Meta.txt` file, and determines the start and end times of the kernel data.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        test_mode: bool</span>
+<span class="sd">            Whether to use the test kernels. Test kernels are small, truncated kernels for each spacecraft valid over a short time range.</span>
+<span class="sd">            If you use this mode, lkspacecraft will not connect to the internet, download new kernels, or used cached kernels.</span>
+<span class="sd">            Use this mode if you want to test lkspacecraft as a dependency in your package.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        Exception</span>
+<span class="sd">            If there is an issue loading the SPICE kernels or retrieving the kernel time coverage.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">is_test_mode</span><span class="p">():</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s2">&quot;`lkspacecraft` is in test mode, and will not download new kernels. Will truncated kernels.&quot;</span>
+            <span class="p">)</span>
+            <span class="n">meta_kernel</span> <span class="o">=</span> <span class="n">cache_contents</span><span class="p">(</span><span class="n">pkgname</span><span class="o">=</span><span class="s2">&quot;lkspacecraft&quot;</span><span class="p">)[</span>
+                <span class="s2">&quot;https://github.com/lightkurve/lkspacecraft/src/lkspacecraft/data/TestMeta.txt&quot;</span>
+            <span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+                <span class="s2">&quot;`lkspacecraft` is not in test mode, and will download and use kernels if available.&quot;</span>
+            <span class="p">)</span>
+            <span class="n">create_meta_kernel</span><span class="p">()</span>
+            <span class="n">meta_kernel</span> <span class="o">=</span> <span class="n">cache_contents</span><span class="p">(</span><span class="n">pkgname</span><span class="o">=</span><span class="s2">&quot;lkspacecraft&quot;</span><span class="p">)[</span>
+                <span class="s2">&quot;https://github.com/lightkurve/lkspacecraft/src/lkspacecraft/data/Meta.txt&quot;</span>
+            <span class="p">]</span>
+        <span class="n">spiceypy</span><span class="o">.</span><span class="n">kclear</span><span class="p">()</span>
+        <span class="n">spiceypy</span><span class="o">.</span><span class="n">furnsh</span><span class="p">(</span><span class="n">meta_kernel</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_time</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_kernel_start_and_end_times</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_kernel_start_and_end_times</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Get a list of loaded kernels</span>
+        <span class="n">kernel_list</span> <span class="o">=</span> <span class="n">spiceypy</span><span class="o">.</span><span class="n">ktotal</span><span class="p">(</span><span class="s2">&quot;ALL&quot;</span><span class="p">)</span>  <span class="c1"># Get the count of all loaded kernels</span>
+        <span class="n">start_et</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)</span>
+        <span class="n">end_et</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;-inf&quot;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">kernel_list</span><span class="p">):</span>
+            <span class="n">kernel_name</span> <span class="o">=</span> <span class="n">spiceypy</span><span class="o">.</span><span class="n">kdata</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;ALL&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="c1"># Check if the kernel is SPK or CK to calculate coverage</span>
+            <span class="n">kernel_type</span> <span class="o">=</span> <span class="n">spiceypy</span><span class="o">.</span><span class="n">kdata</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s2">&quot;ALL&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">kernel_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;SPK&quot;</span><span class="p">,</span> <span class="s2">&quot;CK&quot;</span><span class="p">]:</span>
+                <span class="c1"># Create a window for coverage</span>
+                <span class="n">coverage_window</span> <span class="o">=</span> <span class="n">spiceypy</span><span class="o">.</span><span class="n">stypes</span><span class="o">.</span><span class="n">SPICEDOUBLE_CELL</span><span class="p">(</span><span class="mi">2</span><span class="o">**</span><span class="mi">10</span><span class="p">)</span>
+
+                <span class="c1"># Query coverage for the specific kernel</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">kernel_type</span> <span class="o">==</span> <span class="s2">&quot;SPK&quot;</span><span class="p">:</span>
+                        <span class="n">spiceypy</span><span class="o">.</span><span class="n">spkcov</span><span class="p">(</span>
+                            <span class="n">kernel_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">spacecraft_code</span><span class="p">,</span> <span class="n">coverage_window</span>
+                        <span class="p">)</span>  <span class="c1"># Replace with your NAIF ID</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">continue</span>
+
+                    <span class="c1"># Extract start and end times for the current kernel</span>
+                    <span class="n">interval_start</span> <span class="o">=</span> <span class="n">spiceypy</span><span class="o">.</span><span class="n">wnfetd</span><span class="p">(</span><span class="n">coverage_window</span><span class="p">,</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">interval_end</span> <span class="o">=</span> <span class="n">spiceypy</span><span class="o">.</span><span class="n">wnfetd</span><span class="p">(</span><span class="n">coverage_window</span><span class="p">,</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+                    <span class="c1"># Update the global start and end times</span>
+                    <span class="n">start_et</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">start_et</span><span class="p">,</span> <span class="n">interval_start</span><span class="p">)</span>
+                    <span class="n">end_et</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">end_et</span><span class="p">,</span> <span class="n">interval_end</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="k">continue</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">spiceypy</span><span class="o">.</span><span class="n">et2datetime</span><span class="p">(</span><span class="n">start_et</span><span class="p">))</span>
+        <span class="n">end_time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">spiceypy</span><span class="o">.</span><span class="n">et2datetime</span><span class="p">(</span><span class="n">end_et</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">start_time</span><span class="p">,</span> <span class="n">end_time</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Spacecraft&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_process_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">):</span>
+        <span class="c1"># convert to astropy.time.Time if needed</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">Time</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;jd&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="s2">&quot;Can not parse input time. Pass an `astropy.time.Time` object.&quot;</span>
+                    <span class="p">)</span>
+        <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">([</span><span class="n">time</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">time</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_state_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="s2">&quot;SOLAR SYSTEM BARYCENTER&quot;</span><span class="p">):</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="n">et</span> <span class="o">=</span> <span class="n">spiceypy</span><span class="o">.</span><span class="n">str2et</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">isot</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">state</span><span class="p">,</span> <span class="n">light_travel_time</span> <span class="o">=</span> <span class="n">spiceypy</span><span class="o">.</span><span class="n">spkezr</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">spacecraft_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">et</span><span class="p">,</span>
+                <span class="s2">&quot;J2000&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;NONE&quot;</span><span class="p">,</span>
+                <span class="n">observer</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="n">spiceypy</span><span class="o">.</span><span class="n">SpiceSPKINSUFFDATA</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadEphemeris</span><span class="p">(</span>
+                <span class="s2">&quot;The time you have requested is outside of the time range where data exists for this spacecraft.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">state</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">light_travel_time</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_spacecraft_position</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="s2">&quot;SOLAR SYSTEM BARYCENTER&quot;</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the position vector (x, y, z) in [km] for all `time` w.r.t the observer.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        time: astropy.time.Time</span>
+<span class="sd">            Time array at which to estimate position. Time must be in BJD.</span>
+<span class="sd">        observer: string</span>
+<span class="sd">            Observer body. Common options include &quot;SOLAR SYSTEM BARYCENTER&quot;, &quot;EARTH BARYCENTER&quot;, &quot;MOON BARYCENTER&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_state_vector</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="n">observer</span><span class="p">)[</span><span class="mi">0</span><span class="p">][:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_spacecraft_velocity</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="s2">&quot;SOLAR SYSTEM BARYCENTER&quot;</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the position vector (vx, vy, vz) in [km/s] for all `time` w.r.t the observer.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        time: astropy.time.Time</span>
+<span class="sd">            Time array at which to estimate velocity. Time must be in BJD.</span>
+<span class="sd">        observer: string</span>
+<span class="sd">            Observer body. Common options include &quot;SOLAR SYSTEM BARYCENTER&quot;, &quot;EARTH BARYCENTER&quot;, &quot;MOON BARYCENTER&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_state_vector</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="n">observer</span><span class="p">)[</span><span class="mi">0</span><span class="p">][:,</span> <span class="mi">3</span><span class="p">:]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_spacecraft_light_travel_time</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="s2">&quot;SOLAR SYSTEM BARYCENTER&quot;</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the one-way light travel time in seconds for all `time` w.r.t the observer.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        time: astropy.time.Time</span>
+<span class="sd">            Time array at which to estimate position. Time must be in BJD.</span>
+<span class="sd">        observer: string</span>
+<span class="sd">            Observer body. Common options include &quot;SOLAR SYSTEM BARYCENTER&quot;, &quot;EARTH BARYCENTER&quot;, &quot;MOON BARYCENTER&quot;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_state_vector</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="n">observer</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_barycentric_time_correction</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">,</span> <span class="n">ra</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">],</span> <span class="n">dec</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the barycentric time correction in days for observations of a particular target specified by RA and Dec.</span>
+
+<span class="sd">        Note that `time` here must be the time of the spacecraft clock.</span>
+<span class="sd">        This means that for SPOC data this should be the time without the SPOC barycentric correction applied.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        time: astropy.time.Time</span>
+<span class="sd">            Time array at which to estimate position. Time must be at the spacecraft.</span>
+<span class="sd">        ra: float, np.ndarray</span>
+<span class="sd">            The right ascention of the target in degrees</span>
+<span class="sd">        dec: float, np.ndarray</span>
+<span class="sd">            The declination of the target in degrees</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">zerod</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndim</span><span class="p">(</span><span class="n">ra</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="n">ra</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">ra</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">dec</span><span class="p">)</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+
+        <span class="c1"># Compute the star vector (normalized direction vector for the target)</span>
+        <span class="n">star_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">dec</span><span class="o">.</span><span class="n">ravel</span><span class="p">()))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">ra</span><span class="o">.</span><span class="n">ravel</span><span class="p">())),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">dec</span><span class="o">.</span><span class="n">ravel</span><span class="p">()))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">ra</span><span class="o">.</span><span class="n">ravel</span><span class="p">())),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">dec</span><span class="o">.</span><span class="n">ravel</span><span class="p">())),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">star_vector</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">star_vector</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">position</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_spacecraft_position</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">)</span>
+        <span class="n">tcorr</span> <span class="o">=</span> <span class="p">((</span><span class="n">position</span> <span class="o">*</span> <span class="n">u</span><span class="o">.</span><span class="n">km</span><span class="p">)</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">star_vector</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">c</span><span class="p">))</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">if</span> <span class="n">zerod</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">tcorr</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">tcorr</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">*</span><span class="n">time</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="o">*</span><span class="n">ra</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_velocity_aberrated_positions</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">,</span> <span class="n">ra</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">dec</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the RA and Dec after velocity aberration has been applied.</span>
+
+<span class="sd">        Note that `time` here must be time in spacecraft time.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        time: astropy.time.Time</span>
+<span class="sd">            Time array at which to estimate position. Time must be in TDB.</span>
+<span class="sd">        ra: float, np.ndarray</span>
+<span class="sd">            The right ascention of the target in degrees</span>
+<span class="sd">        dec: float, np.ndarray</span>
+<span class="sd">            The declination of the target in degrees</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">zerod</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndim</span><span class="p">(</span><span class="n">ra</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="n">ra</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">ra</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">dec</span><span class="p">)</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+
+        <span class="c1"># Compute the star vector (normalized direction vector for the target)</span>
+        <span class="n">star_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">dec</span><span class="o">.</span><span class="n">ravel</span><span class="p">()))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">ra</span><span class="o">.</span><span class="n">ravel</span><span class="p">())),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">dec</span><span class="o">.</span><span class="n">ravel</span><span class="p">()))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">ra</span><span class="o">.</span><span class="n">ravel</span><span class="p">())),</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">dec</span><span class="o">.</span><span class="n">ravel</span><span class="p">())),</span>
+            <span class="p">]</span>
+        <span class="p">)</span>
+        <span class="c1"># Normalize star_vector for safety (though it should already be normalized)</span>
+        <span class="n">star_vector</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">star_vector</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="c1"># Get the spacecraft velocity in m/s</span>
+        <span class="n">velocity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_spacecraft_velocity</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">time</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>  <span class="c1"># Convert km/s to m/s</span>
+
+        <span class="c1"># Compute beta vector (velocity / speed of light)</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="n">velocity</span> <span class="o">/</span> <span class="n">c</span><span class="o">.</span><span class="n">value</span>
+
+        <span class="c1"># Compute the scalar product beta \cdot star_vector</span>
+        <span class="c1"># beta_dot_star = np.sum(beta * star_vector, axis=-1)</span>
+        <span class="n">beta_dot_star</span> <span class="o">=</span> <span class="n">beta</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">star_vector</span><span class="p">)</span>
+
+        <span class="c1"># Compute the relativistic factor gamma</span>
+        <span class="n">gamma</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">beta</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+
+        <span class="c1"># Apply the aberration formula</span>
+        <span class="n">factor</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">beta_dot_star</span><span class="p">)</span>
+
+        <span class="c1">#    return factor.shape, gamma.shape, star_vector.shape, beta.shape</span>
+        <span class="n">star_vector_ab</span> <span class="o">=</span> <span class="n">factor</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="n">gamma</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">star_vector</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">+</span> <span class="n">beta</span><span class="p">[:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Normalize the aberrated vector</span>
+        <span class="n">star_vector_ab</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">star_vector_ab</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Convert back to RA and Dec</span>
+        <span class="n">ra_aberrated</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">star_vector_ab</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">star_vector_ab</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="p">)</span>
+        <span class="n">dec_aberrated</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">star_vector_ab</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]))</span>
+
+        <span class="c1"># Ensure RA is in [0, 360] range</span>
+        <span class="n">ra_aberrated</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mod</span><span class="p">(</span><span class="n">ra_aberrated</span><span class="p">,</span> <span class="mi">360</span><span class="p">)</span>
+
+        <span class="c1"># Reshape output to match input dimensions</span>
+        <span class="n">ra_aberrated</span><span class="p">,</span> <span class="n">dec_aberrated</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">ra_aberrated</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">*</span><span class="n">time</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="o">*</span><span class="n">ra</span><span class="o">.</span><span class="n">shape</span><span class="p">)),</span>
+            <span class="n">dec_aberrated</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">*</span><span class="n">time</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="o">*</span><span class="n">dec</span><span class="o">.</span><span class="n">shape</span><span class="p">)),</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">zerod</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ra_aberrated</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">dec_aberrated</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">ra_aberrated</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">*</span><span class="n">time</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="o">*</span><span class="n">ra</span><span class="o">.</span><span class="n">shape</span><span class="p">)),</span> <span class="n">dec_aberrated</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
+            <span class="p">(</span><span class="o">*</span><span class="n">time</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="o">*</span><span class="n">ra</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_differential_velocity_aberrated_positions</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">,</span> <span class="n">ra</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">dec</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ra0</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">dec0</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the RA and Dec after differential velocity aberration has been applied.</span>
+
+<span class="sd">        This is the effect of velocity aberration, accounting for the fact that the spacecraft tracks a given point in the sky.</span>
+<span class="sd">        All stars undergo velocity aberration. During observation, the spacecraft tracks stars, therefore accounting</span>
+<span class="sd">        for the bulk of this motion. This function enables you to calculate the differential velocity aberration</span>
+<span class="sd">        from the spacecraft pointing.</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        time: astropy.time.Time</span>
+<span class="sd">            Time array at which to estimate position. Time must be time in TDB.</span>
+<span class="sd">        ra: float, np.ndarray</span>
+<span class="sd">            The right ascention of the target(s) in degrees</span>
+<span class="sd">        dec: float, np.ndarray</span>
+<span class="sd">            The declination of the target(s) in degrees</span>
+<span class="sd">        ra0: float</span>
+<span class="sd">            The RA of the target which the spacecraft is pointed towards.</span>
+<span class="sd">        dec0: float</span>
+<span class="sd">            The Dec of the target which the spacecraft is pointed towards.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">zerod</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndim</span><span class="p">(</span><span class="n">ra</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="n">ra</span><span class="p">,</span> <span class="n">dec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">ra</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">dec</span><span class="p">)</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_1d</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+
+        <span class="n">nt</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">ndim</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">1</span>
+        <span class="n">ra_ab</span><span class="p">,</span> <span class="n">dec_ab</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_velocity_aberrated_positions</span><span class="p">(</span>
+            <span class="n">time</span><span class="p">,</span> <span class="n">ra</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">dec</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="n">ra_ab</span><span class="p">,</span> <span class="n">dec_ab</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">ra_ab</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">dec_ab</span><span class="p">)</span>
+        <span class="n">ra0_ab</span><span class="p">,</span> <span class="n">dec0_ab</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_velocity_aberrated_positions</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">ra0</span><span class="p">,</span> <span class="n">dec0</span><span class="p">)</span>
+        <span class="n">sep</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra0</span><span class="p">,</span> <span class="n">dec0</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;deg&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">separation</span><span class="p">(</span>
+            <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra0_ab</span><span class="p">,</span> <span class="n">dec0_ab</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;deg&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">pa</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra0</span><span class="p">,</span> <span class="n">dec0</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;deg&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">position_angle</span><span class="p">(</span>
+            <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra0_ab</span><span class="p">,</span> <span class="n">dec0_ab</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;deg&quot;</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">recentered_coords</span> <span class="o">=</span> <span class="n">SkyCoord</span><span class="p">(</span><span class="n">ra_ab</span><span class="p">,</span> <span class="n">dec_ab</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;deg&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">directional_offset_by</span><span class="p">(</span>
+            <span class="n">separation</span><span class="o">=-</span><span class="n">sep</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">position_angle</span><span class="o">=</span><span class="n">pa</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="n">ra_ab_recentered</span><span class="p">,</span> <span class="n">dec_ab_recentered</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">recentered_coords</span><span class="o">.</span><span class="n">ra</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span>
+            <span class="n">recentered_coords</span><span class="o">.</span><span class="n">dec</span><span class="o">.</span><span class="n">deg</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">ra_ab_recentered</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nt</span><span class="p">,</span> <span class="o">*</span><span class="n">ra</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+        <span class="n">ra_ab_recentered</span> <span class="o">=</span> <span class="n">ra_ab_recentered</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nt</span><span class="p">,</span> <span class="o">*</span><span class="n">ra</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+        <span class="n">dec_ab_recentered</span> <span class="o">=</span> <span class="n">dec_ab_recentered</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">nt</span><span class="p">,</span> <span class="o">*</span><span class="n">ra</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">zerod</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ra_ab_recentered</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">dec_ab_recentered</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">ra_ab_recentered</span><span class="p">,</span> <span class="n">dec_ab_recentered</span>
+
+
+<div class="viewcode-block" id="KeplerSpacecraft">
+<a class="viewcode-back" href="../../apidoc.html#lkspacecraft.KeplerSpacecraft">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">KeplerSpacecraft</span><span class="p">(</span><span class="n">Spacecraft</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class representing the Kepler spacecraft.</span>
+
+<span class="sd">    This class extends the `Spacecraft` base class and includes spacecraft-specific</span>
+<span class="sd">    configurations and calculations, such as correcting for timing errors unique to the</span>
+<span class="sd">    Kepler mission.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    spacecraft_code : int</span>
+<span class="sd">        The SPICE NAIF ID code for the Kepler spacecraft.</span>
+
+<span class="sd">    Methods</span>
+<span class="sd">    -------</span>
+<span class="sd">    get_barycentric_time_correction(time, ra, dec)</span>
+<span class="sd">        Returns the barycentric time correction in days for observations of a target,</span>
+<span class="sd">        applying mission-specific timing corrections.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">spacecraft_code</span> <span class="o">=</span> <span class="o">-</span><span class="mi">227</span>
+    <span class="n">time_offset</span> <span class="o">=</span> <span class="mi">2454833</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;KeplerSpacecraft&quot;</span>
+
+<div class="viewcode-block" id="KeplerSpacecraft.get_barycentric_time_correction">
+<a class="viewcode-back" href="../../apidoc.html#lkspacecraft.KeplerSpacecraft.get_barycentric_time_correction">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_barycentric_time_correction</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">,</span> <span class="n">ra</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">],</span> <span class="n">dec</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">npt</span><span class="o">.</span><span class="n">NDArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the barycentric time correction in days for observations of a particular target specified by RA and Dec.</span>
+
+<span class="sd">        Note that `time` here must be time in spacecraft clock time.</span>
+<span class="sd">        This means that for SPOC data this should be the time without the SPOC barycentric correction applied.</span>
+
+<span class="sd">        Note this also corrects the timing error in the Kepler TIME column, see https://archive.stsci.edu/kepler/timing_error.html</span>
+
+<span class="sd">        Parameters:</span>
+<span class="sd">        -----------</span>
+<span class="sd">        time: astropy.time.Time</span>
+<span class="sd">            Time array at which to estimate position. Time must be time at the spacecraft.</span>
+<span class="sd">        ra: float, np.ndarray</span>
+<span class="sd">            The right ascention of the target in degrees</span>
+<span class="sd">        dec: float, np.ndarray</span>
+<span class="sd">            The declination of the target in degrees</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="n">tcorr</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_barycentric_time_correction</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">)</span>
+        <span class="c1"># see data release notes in https://archive.stsci.edu/missions/kepler/docs/drn/release_notes19/DataRelease_19_20130204.pdf</span>
+        <span class="c1"># section 3.4</span>
+        <span class="c1"># For Kepler the TIME column was erroneously in UTC not TDB as reported. As such it did not account for leap seconds</span>
+        <span class="c1"># This corrects the error in the original products</span>
+        <span class="n">tcorr</span> <span class="o">+=</span> <span class="mf">66.184</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">jd</span> <span class="o">&gt;</span> <span class="n">Time</span><span class="p">(</span><span class="s2">&quot;2012-06-30 23:59:60&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;iso&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">jd</span>
+        <span class="n">tcorr</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">tcorr</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="TESSSpacecraft">
+<a class="viewcode-back" href="../../apidoc.html#lkspacecraft.TESSSpacecraft">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">TESSSpacecraft</span><span class="p">(</span><span class="n">Spacecraft</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class representing the TESS spacecraft.</span>
+
+<span class="sd">    This class extends the `Spacecraft` base class and includes spacecraft-specific</span>
+<span class="sd">    configurations, such as the unique SPICE NAIF ID code for the TESS mission.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    spacecraft_code : int</span>
+<span class="sd">        The SPICE NAIF ID code for the TESS spacecraft.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">spacecraft_code</span> <span class="o">=</span> <span class="o">-</span><span class="mi">95</span>
+    <span class="n">time_offset</span> <span class="o">=</span> <span class="mi">2457000</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;TESSSpacecraft&quot;</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024, TESS Science Support Center.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.4.7.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
