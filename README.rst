@@ -295,9 +295,31 @@ For further information, please see the `Lightkurve Community guidelines <https:
 Citing
 ======
 
-If you find ``lkspacecraft`` useful in your research, please cite it and give us a GitHub star!
+If you find ``lkspacecraft`` useful in your research, please cite it and give us a GitHub star! There is a `short publication <https://iopscience.iop.org/article/10.3847/2515-5172/adef3a>`_ describing ``lkspacecraft`` and how it works. The citation for this package is below. 
 
-If you use Lightkurve for work or research presented in a publication, we request the following acknowledgment or citation:
+.. code-block:: shell
+   @article{Hedges_2025,
+   doi = {10.3847/2515-5172/adef3a},
+   url = {https://dx.doi.org/10.3847/2515-5172/adef3a},
+   year = {2025},
+   month = {jul},
+   publisher = {The American Astronomical Society},
+   volume = {9},
+   number = {7},
+   pages = {186},
+   author = {Hedges, Christina and Martínez-Palomera, Jorge and Tuson, Amy and Pritchard, Tyler and Hounsell, Rebekah and Schanche, Nicole and Kostov, Veselin and Giles, Daniel},
+   title = {lkspacecraft: A Tool for Obtaining Orbital Properties of the Kepler and TESS Spacecraft},
+   journal = {Research Notes of the AAS},
+   abstract = {NASA’s Kepler and TESS missions have produced image data and time-series of millions of stars, and unlocked valuable astrophysical inference. These missions both provide precise, accurate time-series. However, because of the orbital properties of the spacecraft, the data from these missions are impacted by various relativistic effects which cause position and timing aberrations. These aberrations can be calculated using the precise ephemerides of the spacecraft, which are provided by the mission via SPICE kernels. However, SPICE kernels can be difficult for users to work with, requiring a knowledge of the workings of the SPICE package, and the location and formats of the various kernels needed to build spacecraft ephemeris. lkspacecraft is a new Python package that utilizes spiceypy to provide users with a simple interface to obtain the key properties needed to correct the relativistic effects that impact Kepler, K2 and TESS data.}
+   }
+
+If you use ``lkspacecraft`` in your work please consider adding the following acknowledgement
+
+`
+This research made use of lkspacecraft, a Python tool for understanding the positions and velocities of the Kepler and TESS spacecrafts, based on SPICE and spiceypy.`
+`
+
+If you use Lightkurve for work or research presented in a publication, we request the following acknowledgment and citation:
 
 `This research made use of Lightkurve, a Python package for Kepler and TESS data analysis (Lightkurve Collaboration, 2018).`
 
