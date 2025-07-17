@@ -169,7 +169,7 @@ class Spacecraft(object):
         Parameters:
         -----------
         time: astropy.time.Time
-            Time array at which to estimate position. Time must be in UTC.
+            Time array at which to estimate position. Time must be in BJD.
         observer: string
             Observer body. Common options include "SOLAR SYSTEM BARYCENTER", "EARTH BARYCENTER", "MOON BARYCENTER"
         """
@@ -183,7 +183,7 @@ class Spacecraft(object):
         Parameters:
         -----------
         time: astropy.time.Time
-            Time array at which to estimate velocity. Time must be in UTC.
+            Time array at which to estimate velocity. Time must be in BJD.
         observer: string
             Observer body. Common options include "SOLAR SYSTEM BARYCENTER", "EARTH BARYCENTER", "MOON BARYCENTER"
         """
@@ -197,7 +197,7 @@ class Spacecraft(object):
         Parameters:
         -----------
         time: astropy.time.Time
-            Time array at which to estimate position. Time must be in UTC.
+            Time array at which to estimate position. Time must be in BJD.
         observer: string
             Observer body. Common options include "SOLAR SYSTEM BARYCENTER", "EARTH BARYCENTER", "MOON BARYCENTER"
         """
@@ -244,12 +244,12 @@ class Spacecraft(object):
     ) -> npt.NDArray:
         """Returns the RA and Dec after velocity aberration has been applied.
 
-        Note that `time` here must be time in spacecraft time, in UTC format.
+        Note that `time` here must be time in spacecraft time.
 
         Parameters:
         -----------
         time: astropy.time.Time
-            Time array at which to estimate position. Time must be in UTC.
+            Time array at which to estimate position. Time must be in TDB.
         ra: float, np.ndarray
             The right ascention of the target in degrees
         dec: float, np.ndarray
@@ -324,12 +324,10 @@ class Spacecraft(object):
         for the bulk of this motion. This function enables you to calculate the differential velocity aberration
         from the spacecraft pointing.
 
-        Note that `time` here must be time in spacecraft time, in UTC format.
-
         Parameters:
         -----------
         time: astropy.time.Time
-            Time array at which to estimate position. Time must be in UTC.
+            Time array at which to estimate position. Time must be time in TDB.
         ra: float, np.ndarray
             The right ascention of the target(s) in degrees
         dec: float, np.ndarray
@@ -411,7 +409,7 @@ class KeplerSpacecraft(Spacecraft):
         Parameters:
         -----------
         time: astropy.time.Time
-            Time array at which to estimate position. Time must be in UTC.
+            Time array at which to estimate position. Time must be time at the spacecraft.
         ra: float, np.ndarray
             The right ascention of the target in degrees
         dec: float, np.ndarray
