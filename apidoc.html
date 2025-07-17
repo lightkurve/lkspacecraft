@@ -488,6 +488,12 @@ from the spacecraft pointing.</p>
 <span class="sig-name descname"><span class="pre">spacecraft_code</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-227</span></em><a class="headerlink" href="#id1" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="lkspacecraft.KeplerSpacecraft.tdb_to_utc">
+<span class="sig-name descname"><span class="pre">tdb_to_utc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.astropy.org/en/latest/api/astropy.time.Time.html#astropy.time.Time" title="(in Astropy v7.2)"><span class="pre">Time</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.astropy.org/en/latest/api/astropy.time.Time.html#astropy.time.Time" title="(in Astropy v7.2)"><span class="pre">Time</span></a></span></span><a class="headerlink" href="#lkspacecraft.KeplerSpacecraft.tdb_to_utc" title="Link to this definition">#</a></dt>
+<dd><p>Convert an input time in TDB to a time in UTC</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="lkspacecraft.KeplerSpacecraft.time_offset">
 <span class="sig-name descname"><span class="pre">time_offset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2454833</span></em><a class="headerlink" href="#lkspacecraft.KeplerSpacecraft.time_offset" title="Link to this definition">#</a></dt>
@@ -574,6 +580,12 @@ from the spacecraft pointing.</p>
 <span class="sig-name descname"><span class="pre">spacecraft_code</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-95</span></em><a class="headerlink" href="#id2" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="lkspacecraft.TESSSpacecraft.tdb_to_utc">
+<span class="sig-name descname"><span class="pre">tdb_to_utc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.astropy.org/en/latest/api/astropy.time.Time.html#astropy.time.Time" title="(in Astropy v7.2)"><span class="pre">Time</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.astropy.org/en/latest/api/astropy.time.Time.html#astropy.time.Time" title="(in Astropy v7.2)"><span class="pre">Time</span></a></span></span><a class="headerlink" href="#lkspacecraft.TESSSpacecraft.tdb_to_utc" title="Link to this definition">#</a></dt>
+<dd><p>Convert an input time in TDB to a time in UTC</p>
+</dd></dl>
+
 <dl class="py attribute">
 <dt class="sig sig-object py" id="lkspacecraft.TESSSpacecraft.time_offset">
 <span class="sig-name descname"><span class="pre">time_offset</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2457000</span></em><a class="headerlink" href="#lkspacecraft.TESSSpacecraft.time_offset" title="Link to this definition">#</a></dt>
@@ -640,6 +652,7 @@ from the spacecraft pointing.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lkspacecraft.KeplerSpacecraft.get_spacecraft_velocity"><code class="docutils literal notranslate"><span class="pre">KeplerSpacecraft.get_spacecraft_velocity()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lkspacecraft.KeplerSpacecraft.get_velocity_aberrated_positions"><code class="docutils literal notranslate"><span class="pre">KeplerSpacecraft.get_velocity_aberrated_positions()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"><code class="docutils literal notranslate"><span class="pre">KeplerSpacecraft.spacecraft_code</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lkspacecraft.KeplerSpacecraft.tdb_to_utc"><code class="docutils literal notranslate"><span class="pre">KeplerSpacecraft.tdb_to_utc()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lkspacecraft.KeplerSpacecraft.time_offset"><code class="docutils literal notranslate"><span class="pre">KeplerSpacecraft.time_offset</span></code></a></li>
 </ul>
 </li>
@@ -652,6 +665,7 @@ from the spacecraft pointing.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lkspacecraft.TESSSpacecraft.get_spacecraft_velocity"><code class="docutils literal notranslate"><span class="pre">TESSSpacecraft.get_spacecraft_velocity()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lkspacecraft.TESSSpacecraft.get_velocity_aberrated_positions"><code class="docutils literal notranslate"><span class="pre">TESSSpacecraft.get_velocity_aberrated_positions()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2"><code class="docutils literal notranslate"><span class="pre">TESSSpacecraft.spacecraft_code</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lkspacecraft.TESSSpacecraft.tdb_to_utc"><code class="docutils literal notranslate"><span class="pre">TESSSpacecraft.tdb_to_utc()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lkspacecraft.TESSSpacecraft.time_offset"><code class="docutils literal notranslate"><span class="pre">TESSSpacecraft.time_offset</span></code></a></li>
 </ul>
 </li>

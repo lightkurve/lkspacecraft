@@ -419,6 +419,28 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
 
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;TESSSpacecraft&quot;</span><span class="p">,</span> <span class="s2">&quot;KeplerSpacecraft&quot;</span><span class="p">]</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_process_time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Time</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;convert to astropy.time.Time, if needed&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">Time</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;jd&quot;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="s2">&quot;tdb&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="s2">&quot;tdb&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;Can not parse input time. Pass an `astropy.time.Time` object.&quot;</span>
+                <span class="p">)</span>
+    <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">scale</span> <span class="o">!=</span> <span class="s2">&quot;tdb&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;You must use times in TDB scale.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">([</span><span class="n">time</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">time</span>
+
+
 <span class="k">class</span><span class="w"> </span><span class="nc">Spacecraft</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A base class for handling spacecraft ephemeris data and calculations.</span>
@@ -520,32 +542,17 @@
                     <span class="n">end_et</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">end_et</span><span class="p">,</span> <span class="n">interval_end</span><span class="p">)</span>
                 <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                     <span class="k">continue</span>
-        <span class="n">start_time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">spiceypy</span><span class="o">.</span><span class="n">et2datetime</span><span class="p">(</span><span class="n">start_et</span><span class="p">))</span>
-        <span class="n">end_time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">spiceypy</span><span class="o">.</span><span class="n">et2datetime</span><span class="p">(</span><span class="n">end_et</span><span class="p">))</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">spiceypy</span><span class="o">.</span><span class="n">et2datetime</span><span class="p">(</span><span class="n">start_et</span><span class="p">),</span> <span class="n">scale</span><span class="o">=</span><span class="s2">&quot;utc&quot;</span><span class="p">)</span>
+        <span class="n">end_time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">spiceypy</span><span class="o">.</span><span class="n">et2datetime</span><span class="p">(</span><span class="n">end_et</span><span class="p">),</span> <span class="n">scale</span><span class="o">=</span><span class="s2">&quot;utc&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">start_time</span><span class="p">,</span> <span class="n">end_time</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;Spacecraft&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_process_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">):</span>
-        <span class="c1"># convert to astropy.time.Time if needed</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">Time</span><span class="p">):</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;jd&quot;</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                <span class="k">try</span><span class="p">:</span>
-                    <span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
-                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                        <span class="s2">&quot;Can not parse input time. Pass an `astropy.time.Time` object.&quot;</span>
-                    <span class="p">)</span>
-        <span class="k">if</span> <span class="n">time</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">time</span> <span class="o">=</span> <span class="n">Time</span><span class="p">([</span><span class="n">time</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">time</span>
-
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_state_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">,</span> <span class="n">observer</span><span class="o">=</span><span class="s2">&quot;SOLAR SYSTEM BARYCENTER&quot;</span><span class="p">):</span>
-        <span class="n">time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
-        <span class="n">et</span> <span class="o">=</span> <span class="n">spiceypy</span><span class="o">.</span><span class="n">str2et</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">isot</span><span class="p">)</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">_process_time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="c1"># times are in BJD in TDB, we convert to ET in BJD</span>
+        <span class="n">et</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">spiceypy</span><span class="o">.</span><span class="n">unitim</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">jd</span><span class="p">,</span> <span class="s2">&quot;JED&quot;</span><span class="p">,</span> <span class="s2">&quot;ET&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">time</span><span class="p">])</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">state</span><span class="p">,</span> <span class="n">light_travel_time</span> <span class="o">=</span> <span class="n">spiceypy</span><span class="o">.</span><span class="n">spkezr</span><span class="p">(</span>
                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">spacecraft_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
@@ -768,6 +775,12 @@
             <span class="k">return</span> <span class="n">ra_ab_recentered</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">dec_ab_recentered</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">ra_ab_recentered</span><span class="p">,</span> <span class="n">dec_ab_recentered</span>
 
+    <span class="k">def</span><span class="w"> </span><span class="nf">tdb_to_utc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="n">Time</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Time</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert an input time in TDB to a time in UTC&quot;&quot;&quot;</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">_process_time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="n">et</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">spiceypy</span><span class="o">.</span><span class="n">unitim</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">jd</span><span class="p">,</span> <span class="s2">&quot;JED&quot;</span><span class="p">,</span> <span class="s2">&quot;ET&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">time</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">Time</span><span class="p">(</span><span class="n">spiceypy</span><span class="o">.</span><span class="n">et2utc</span><span class="p">(</span><span class="n">et</span><span class="p">,</span> <span class="s2">&quot;J&quot;</span><span class="p">,</span> <span class="mi">9</span><span class="p">)[</span><span class="mi">3</span><span class="p">:],</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;jd&quot;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="s2">&quot;utc&quot;</span><span class="p">)</span>
+
 
 <div class="viewcode-block" id="KeplerSpacecraft">
 <a class="viewcode-back" href="../../apidoc.html#lkspacecraft.KeplerSpacecraft">[docs]</a>
@@ -818,14 +831,14 @@
 <span class="sd">        dec: float, np.ndarray</span>
 <span class="sd">            The declination of the target in degrees</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">_process_time</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
         <span class="n">tcorr</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_barycentric_time_correction</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">ra</span><span class="p">,</span> <span class="n">dec</span><span class="p">)</span>
         <span class="c1"># see data release notes in https://archive.stsci.edu/missions/kepler/docs/drn/release_notes19/DataRelease_19_20130204.pdf</span>
         <span class="c1"># section 3.4</span>
         <span class="c1"># For Kepler the TIME column was erroneously in UTC not TDB as reported. As such it did not account for leap seconds</span>
-        <span class="c1"># This corrects the error in the original products</span>
+        <span class="c1"># They added the leap seconds to the correction column to account for this, so we do the same thing.</span>
         <span class="n">tcorr</span> <span class="o">+=</span> <span class="mf">66.184</span>
-        <span class="n">k</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">jd</span> <span class="o">&gt;</span> <span class="n">Time</span><span class="p">(</span><span class="s2">&quot;2012-06-30 23:59:60&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;iso&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">jd</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">jd</span> <span class="o">&gt;</span> <span class="n">Time</span><span class="p">(</span><span class="s2">&quot;2012-06-30 23:59:60&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;iso&quot;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="s2">&quot;tdb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">jd</span>
         <span class="n">tcorr</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">tcorr</span></div>
 </div>
