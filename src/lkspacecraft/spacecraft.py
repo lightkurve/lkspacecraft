@@ -20,6 +20,28 @@ class BadEphemeris(Exception):
         super().__init__(message)
 
 
+__all__ = ["TESSSpacecraft", "KeplerSpacecraft"]
+
+
+def _process_time(time) -> Time:
+    """convert to astropy.time.Time, if needed"""
+    if not isinstance(time, Time):
+        try:
+            time = Time(time, format="jd", scale="tdb")
+        except ValueError:
+            try:
+                time = Time(time, scale="tdb")
+            except Exception:
+                raise ValueError(
+                    "Can not parse input time. Pass an `astropy.time.Time` object."
+                )
+    if time.scale != "tdb":
+        raise ValueError("You must use times in TDB scale.")
+    if time.ndim == 0:
+        time = Time([time])
+    return time
+
+
 class Spacecraft(object):
     """
     A base class for handling spacecraft ephemeris data and calculations.
@@ -121,32 +143,17 @@ class Spacecraft(object):
                     end_et = max(end_et, interval_end)
                 except Exception:
                     continue
-        start_time = Time(spiceypy.et2datetime(start_et))
-        end_time = Time(spiceypy.et2datetime(end_et))
+        start_time = Time(spiceypy.et2datetime(start_et), scale="utc")
+        end_time = Time(spiceypy.et2datetime(end_et), scale="utc")
         return start_time, end_time
 
     def __repr__(self):
         return "Spacecraft"
 
-    def _process_time(self, time: Time):
-        # convert to astropy.time.Time if needed
-        if not isinstance(time, Time):
-            try:
-                time = Time(time, format="jd")
-            except ValueError:
-                try:
-                    time = Time(time)
-                except Exception:
-                    raise ValueError(
-                        "Can not parse input time. Pass an `astropy.time.Time` object."
-                    )
-        if time.ndim == 0:
-            time = Time([time])
-        return time
-
     def _get_state_vector(self, time: Time, observer="SOLAR SYSTEM BARYCENTER"):
-        time = self._process_time(time)
-        et = spiceypy.str2et(time.isot)
+        time = _process_time(time)
+        # times are in BJD in TDB, we convert to ET in BJD
+        et = np.asarray([spiceypy.unitim(t.jd, "JED", "ET") for t in time])
         try:
             state, light_travel_time = spiceypy.spkezr(
                 f"{self.spacecraft_code}",
@@ -369,6 +376,12 @@ class Spacecraft(object):
             return ra_ab_recentered[:, 0], dec_ab_recentered[:, 0]
         return ra_ab_recentered, dec_ab_recentered
 
+    def tdb_to_utc(self, time: Time) -> Time:
+        """Convert an input time in TDB to a time in UTC"""
+        time = _process_time(time)
+        et = np.asarray([spiceypy.unitim(t.jd, "JED", "ET") for t in time])
+        return Time(spiceypy.et2utc(et, "J", 9)[3:], format="jd", scale="utc")
+
 
 class KeplerSpacecraft(Spacecraft):
     """
@@ -415,14 +428,14 @@ class KeplerSpacecraft(Spacecraft):
         dec: float, np.ndarray
             The declination of the target in degrees
         """
-        time = self._process_time(time)
+        time = _process_time(time)
         tcorr = super().get_barycentric_time_correction(time, ra, dec)
         # see data release notes in https://archive.stsci.edu/missions/kepler/docs/drn/release_notes19/DataRelease_19_20130204.pdf
         # section 3.4
         # For Kepler the TIME column was erroneously in UTC not TDB as reported. As such it did not account for leap seconds
-        # This corrects the error in the original products
+        # They added the leap seconds to the correction column to account for this, so we do the same thing.
         tcorr += 66.184
-        k = time.jd > Time("2012-06-30 23:59:60", format="iso").jd
+        k = time.jd > Time("2012-06-30 23:59:60", format="iso", scale="tdb").jd
         tcorr[k] += 1
         return tcorr
 

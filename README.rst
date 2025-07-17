@@ -335,6 +335,8 @@ details.
 
 Changelog:
 ==========
+v1.3.0
+   - Fixed documentation for times, forced times to be TDB, added `tdb_to_utc` function
 v1.2.0
    - Added in testing capabilities using truncated SPICE kernels
 v1.1.0
