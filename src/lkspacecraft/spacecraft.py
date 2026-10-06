@@ -92,7 +92,7 @@ class Spacecraft(object):
         """
         if is_test_mode():
             log.warning(
-                "`lkspacecraft` is in test mode, and will not download new kernels. Will truncated kernels."
+                "`lkspacecraft` is in test mode, and will not download new kernels. Will use truncated kernels."
             )
             meta_kernel = cache_contents(pkgname="lkspacecraft")[
                 "https://github.com/lightkurve/lkspacecraft/src/lkspacecraft/data/TestMeta.txt"
@@ -106,7 +106,7 @@ class Spacecraft(object):
             ]
         else:
             log.info(
-                "`lkspacecraft` is not in test mode, and will download and use kernels if available."
+                "`lkspacecraft` is not in test or offline mode, and will download and use kernels if available."
             )
             create_meta_kernel()
             meta_kernel = cache_contents(pkgname="lkspacecraft")[
