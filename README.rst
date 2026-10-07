@@ -220,15 +220,15 @@ Before using off-line mode, make sure that the necessary kernels are already cac
 
 .. code-block:: python
    
-   import lkspacecraft
+   from lkspacecraft import TESSSpacecraft
    tsc = TESSSpacecraft() # this will update the local kernel database as off-line mode is disabled by default
 
 Then you can use the off-line mode in your parallel python script with:
 
 .. code-block:: python
 
-   import lkspacecraft
-   lkspacecraft.enable_offline_mode()
+   from lkspacecraft import TESSSpacecraft, enable_offline_mode
+   enable_offline_mode()
    tsc = TESSSpacecraft()
 
 
