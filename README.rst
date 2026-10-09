@@ -358,6 +358,8 @@ Changelog:
 ==========
 v1.3.2
    - Adding off-line mode to only use cached kernels.
+v1.3.1
+   - Fixed directory path for rare cases the directory needs to be truncated within the meta kernel to comply with SPICE standards. 
 v1.3.0
    - Fixed documentation for times, forced times to be TDB, added `tdb_to_utc` function
 v1.2.0
