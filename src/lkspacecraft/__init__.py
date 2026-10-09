@@ -3,6 +3,7 @@ import os  # noqa
 
 PACKAGEDIR = os.path.abspath(os.path.dirname(__file__))
 TEST_MODE = False
+OFFLINE_MODE = False
 
 
 def enable_test_mode():
@@ -17,6 +18,20 @@ def disable_test_mode():
 
 def is_test_mode():
     return TEST_MODE
+
+
+def enable_offline_mode():
+    global OFFLINE_MODE
+    OFFLINE_MODE = True
+
+
+def disable_offline_mode():
+    global OFFLINE_MODE
+    OFFLINE_MODE = False
+
+
+def is_offline_mode():
+    return OFFLINE_MODE
 
 
 from importlib.metadata import PackageNotFoundError, version  # noqa

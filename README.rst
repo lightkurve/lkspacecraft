@@ -211,6 +211,27 @@ If you are designing continuous integration and have lkspacecraft as a dependenc
 
 Note that using test mode is less accurate, because the truncated files are small and interpolated. This should test functionality, but be careful when using test mode to test accuracy.
 
+Off-line ``lkspacecraft``
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``lkspacecraft`` can be used in an off-line mode, where it will not attempt to download new kernels from the internet. This is useful in environments where internet access is restricted such as computing nodes or isolated systems. It is also useful when parallel running python scripts that use ``lkspacecraft`` and avoid file corruption.
+
+Before using off-line mode, make sure that the necessary kernels are already cached locally by running the following code in an environment with internet access:
+
+.. code-block:: python
+   
+   from lkspacecraft import TESSSpacecraft
+   tsc = TESSSpacecraft() # this will update the local kernel database as off-line mode is disabled by default
+
+Then you can use the off-line mode in your parallel python script with:
+
+.. code-block:: python
+
+   from lkspacecraft import TESSSpacecraft, enable_offline_mode
+   enable_offline_mode()
+   tsc = TESSSpacecraft()
+
+
 Extending ``lkspacecraft``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -335,6 +356,8 @@ details.
 
 Changelog:
 ==========
+v1.3.2
+   - Adding off-line mode to only use cached kernels.
 v1.3.0
    - Fixed documentation for times, forced times to be TDB, added `tdb_to_utc` function
 v1.2.0
