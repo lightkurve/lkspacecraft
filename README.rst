@@ -356,6 +356,8 @@ details.
 
 Changelog:
 ==========
+v1.3.3
+   - Fixing bug in BSP file names from MAST archive, stripping blank spaces from file names.
 v1.3.2
    - Adding off-line mode to only use cached kernels.
 v1.3.1
