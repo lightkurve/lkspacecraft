@@ -132,7 +132,7 @@ def create_meta_kernel():
         tess_bsp = {
             l.split(">")[2].split("<")[
                 0
-            ]: "https://archive.stsci.edu/missions/tess/models/"
+            ].strip(): "https://archive.stsci.edu/missions/tess/models/"
             for l in df[0]
             if "TESS_EPH_DEF" in l
         }
