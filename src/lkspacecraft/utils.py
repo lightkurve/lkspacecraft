@@ -133,8 +133,7 @@ def create_meta_kernel():
         url = "https://archive.stsci.edu/missions/tess/models/"
         html = request.urlopen(url).read().decode("utf-8")
 
-        # using regex to find the href links to the TESS_EPH_DEF files in the HTML
-        # this is more robust to changes in the HTML structure than using previous method
+        # this is more robust to changes in the HTML structure
         tess_bsp = {
             filename: url
             for filename in re.findall(r'href="([^"]*TESS_EPH_DEF[^"]*)"', html)
