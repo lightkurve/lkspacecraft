@@ -357,7 +357,7 @@ details.
 Changelog:
 ==========
 v1.3.3
-   - Fixing bug in BSP file names from MAST archive, stripping blank spaces from file names.
+   - Fixing bug in BSP file names from MAST archive, using regex and request robust to HTML changes.
 v1.3.2
    - Adding off-line mode to only use cached kernels.
 v1.3.1
