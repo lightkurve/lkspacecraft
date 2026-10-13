@@ -135,7 +135,7 @@ def create_meta_kernel():
 
         # using regex to find the href links to the TESS_EPH_DEF files in the HTML
         tess_bsp = {
-            filename: url 
+            filename: url
             for filename in re.findall(r'href="([^"]*TESS_EPH_DEF[^"]*)"', html)
         }
         _ = tess_bsp.pop("TESS_EPH_DEF_2018004_01.bsp")
