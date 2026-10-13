@@ -358,6 +358,7 @@ Changelog:
 ==========
 v1.3.2
    - Adding off-line mode to only use cached kernels.
+   - Fixing bug in BSP file names from MAST archive, using regex and request robust to HTML changes.
 v1.3.1
    - Fixed directory path for rare cases the directory needs to be truncated within the meta kernel to comply with SPICE standards. 
 v1.3.0

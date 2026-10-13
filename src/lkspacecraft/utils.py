@@ -1,5 +1,6 @@
 # flake8: noqa
 import os
+import re
 import tempfile
 import warnings
 from functools import lru_cache
@@ -7,11 +8,11 @@ from glob import glob
 from pathlib import Path
 
 import numpy as np
-import pandas as pd
 from astropy.utils.data import CacheMissingWarning, cache_contents
 from astropy.utils.data import clear_download_cache as _astropy_clear_download_cache
 from astropy.utils.data import download_file, import_file_to_cache, is_url_in_cache
 from tqdm import tqdm
+from urllib import request
 
 from . import PACKAGEDIR, log
 
@@ -128,13 +129,14 @@ def create_meta_kernel():
     @lru_cache
     def get_tess_bsp():
         """Get all the listings of the spice kernels for TESS, including any new files."""
-        df = pd.read_csv("https://archive.stsci.edu/missions/tess/models/", header=None)
+
+        url = "https://archive.stsci.edu/missions/tess/models/"
+        html = request.urlopen(url).read().decode("utf-8")
+
+        # this is more robust to changes in the HTML structure
         tess_bsp = {
-            l.split(">")[2].split("<")[
-                0
-            ]: "https://archive.stsci.edu/missions/tess/models/"
-            for l in df[0]
-            if "TESS_EPH_DEF" in l
+            filename: url
+            for filename in re.findall(r'href="([^"]*TESS_EPH_DEF[^"]*)"', html)
         }
         _ = tess_bsp.pop("TESS_EPH_DEF_2018004_01.bsp")
         _ = tess_bsp.pop("TESS_EPH_DEF_2018080_01.bsp")
