@@ -356,6 +356,8 @@ details.
 
 Changelog:
 ==========
+v1.3.3
+   - Increasing python requirement to `<4.0` to allow newer TIKE kernel version (2026.2 pyver 3.13.15) 
 v1.3.2
    - Adding off-line mode to only use cached kernels.
    - Fixing bug in BSP file names from MAST archive, using regex and request robust to HTML changes.
