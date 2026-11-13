@@ -1,6 +1,6 @@
-#######
+############
 lkspacecraft
-#######
+############
 
 .. include:: ../README.rst
    :start-after: <!-- intro content start -->
