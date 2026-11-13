@@ -180,8 +180,8 @@ class Spacecraft(object):
     ) -> npt.NDArray:
         """Returns the position vector (x, y, z) in [km] for all `time` w.r.t the observer.
 
-        Parameters:
-        -----------
+        Parameters
+        ----------
         time: astropy.time.Time
             Time array at which to estimate position. Time must be in BJD.
         observer: string
@@ -194,8 +194,8 @@ class Spacecraft(object):
     ) -> npt.NDArray:
         """Returns the position vector (vx, vy, vz) in [km/s] for all `time` w.r.t the observer.
 
-        Parameters:
-        -----------
+        Parameters
+        ----------
         time: astropy.time.Time
             Time array at which to estimate velocity. Time must be in BJD.
         observer: string
@@ -208,8 +208,8 @@ class Spacecraft(object):
     ) -> npt.NDArray:
         """Returns the one-way light travel time in seconds for all `time` w.r.t the observer.
 
-        Parameters:
-        -----------
+        Parameters
+        ----------
         time: astropy.time.Time
             Time array at which to estimate position. Time must be in BJD.
         observer: string
@@ -225,8 +225,8 @@ class Spacecraft(object):
         Note that `time` here must be the time of the spacecraft clock.
         This means that for SPOC data this should be the time without the SPOC barycentric correction applied.
 
-        Parameters:
-        -----------
+        Parameters
+        ----------
         time: astropy.time.Time
             Time array at which to estimate position. Time must be at the spacecraft.
         ra: float, np.ndarray
@@ -260,8 +260,8 @@ class Spacecraft(object):
 
         Note that `time` here must be time in spacecraft time.
 
-        Parameters:
-        -----------
+        Parameters
+        ----------
         time: astropy.time.Time
             Time array at which to estimate position. Time must be in TDB.
         ra: float, np.ndarray
@@ -338,8 +338,8 @@ class Spacecraft(object):
         for the bulk of this motion. This function enables you to calculate the differential velocity aberration
         from the spacecraft pointing.
 
-        Parameters:
-        -----------
+        Parameters
+        ----------
         time: astropy.time.Time
             Time array at which to estimate position. Time must be time in TDB.
         ra: float, np.ndarray
@@ -426,8 +426,8 @@ class KeplerSpacecraft(Spacecraft):
 
         Note this also corrects the timing error in the Kepler TIME column, see https://archive.stsci.edu/kepler/timing_error.html
 
-        Parameters:
-        -----------
+        Parameters
+        ----------
         time: astropy.time.Time
             Time array at which to estimate position. Time must be time at the spacecraft.
         ra: float, np.ndarray

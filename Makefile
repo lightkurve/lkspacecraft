@@ -1,20 +1,16 @@
-.PHONY: all clean pytest coverage flake8 black mypy isort
+.PHONY: all clean pytest coverage ruff format mypy
 
 # Run all the checks which do not change files
-all: isort black flake8 pytest
+all: ruff pytest
 
 # Run the unit tests using `pytest`
 pytest:
 	poetry run pytest src tests
 
-# Lint the code using `flake8`
-flake8:
-	poetry run flake8 src tests
+# Lint the code using `ruff`
+ruff:
+	poetry run ruff check src tests
 
-# Automatically format the code using `black`
-black:
-	poetry run black src tests
-
-# Order the imports using `isort`
-isort:
-	poetry run isort src tests
+# Automatically format the code using `ruff`
+format:
+	poetry run ruff format src tests

@@ -6,24 +6,24 @@ authors = ["Christina Hedges <christina.l.hedges@nasa.gov>", "Tyler Pritchard <t
 readme = "README.rst"
 
 [tool.poetry.dependencies]
-python = ">=3.9,<4.0"
+python = ">=3.11,<4.0"
+numpy = ">=2.2.0"
 spiceypy = "^6.0.0"
-matplotlib = "^3.9.2"
-astropy = ">=5.0.0"
-pandas = "^2.2.3"
+matplotlib = ">=3.11"
+astropy = ">=6.1"
+pandas = ">=2.3"
 
 [tool.poetry.group.dev]
 optional = true
 
 [tool.poetry.group.dev.dependencies]
 jupyterlab = "^4.2.5"
-pytest = "^8.3.3"
-lksearch = "^1.0.0"
-line-profiler = "^4.2.0"
+pytest = ">=8.3.0"
+ruff = ">=0.15"
+lksearch = ">=1.2.2"
+line-profiler = ">=4.2.0"
 tesswcs = "^1.2.2"
 tesscube = "^1.0.5"
-black = "^24.10.0"
-isort = "^5.13.2"
 nbsphinx = "^0.9.6"
 sphinx-rtd-theme = "^3.0.2"
 sphinx-astropy = "^1.9.1"
@@ -32,7 +32,6 @@ pydata-sphinx-theme = "^0.16.1"
 sphinx-autobuild = "^2024.10.3"
 ghp-import = "^2.1.0"
 lxml = "^5.3.0"
-flake8 = "^7.1.1"
 pandoc = "^2.4"
 
 [build-system]
